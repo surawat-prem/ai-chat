@@ -63,12 +63,14 @@ variable "aws_subnets_workload" {
 variable "aws_subnets_controller" {
     type = map(object({
       cidr_block = string
+      availability_zone = string
       aws_subnet_tag = map(string)
     }))
 
     default = {
       controller-1 = {
         "cidr_block" = "172.16.0.0/24"
+        "availability_zone" = "ap-southeast-1a"
         "aws_subnet_tag" = {
           Name = "controller-1"
         }
