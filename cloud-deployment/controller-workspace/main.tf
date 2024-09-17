@@ -31,7 +31,7 @@ module "aws-ec2-noble-controller" {
   aws_ec2_key_name = var.aws_key_pair_personal_name
   aws_ec2_tags = var.aws_ec2_controller_tags
 
-  aws_ec2_net_subnet_id = data.terraform_remote_state.network.outputs.subnet_ids_workload["controller-1"]
+  aws_ec2_net_subnet_id = data.terraform_remote_state.network.outputs.subnet_ids_controller["controller-1"]
   aws_ec2_net_private_ips = var.aws_ec2_controller_net_private_ips
   aws_ec2_net_tags = var.aws_ec2_controller_net_tags
   aws_ec2_net_vpc_id = data.terraform_remote_state.network.outputs.vpc_ids["vpc_controller"]

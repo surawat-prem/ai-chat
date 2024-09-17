@@ -48,16 +48,16 @@ variable "aws_ec2_controller_sg_tags" {
 variable "aws_vpc_sg_ingress_rules" {
   type = map(object({
     cidr_ipv4 = string
-    from_port = string
+    from_port = number
     ip_protocol = string
-    to_port = string
+    to_port = number
   }))
   default = {
     ssh = {
-      cidr_ipv4 = "49.49.236.98"
-      from_port = "22"
+      cidr_ipv4 = "49.49.236.98/32"
+      from_port = 22
       ip_protocol = "tcp"
-      to_port = "22"
+      to_port = 22
     }
   }
 }
@@ -65,16 +65,16 @@ variable "aws_vpc_sg_ingress_rules" {
 variable "aws_vpc_sg_egress_rules" {
   type = map(object({
     cidr_ipv4 = string
-    from_port = string
+    from_port = number
     ip_protocol = string
-    to_port = string
+    to_port = number
   }))
   default = {
     tcp-internet = {
-      cidr_ipv4 = "0.0.0.0"
-      from_port = "80-443"
+      cidr_ipv4 = "0.0.0.0/0"
+      from_port = 80
       ip_protocol = "tcp"
-      to_port = "80-443"
+      to_port = 443
     }
   }
 }

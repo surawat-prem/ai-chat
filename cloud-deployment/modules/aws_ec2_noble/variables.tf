@@ -41,17 +41,17 @@ variable "aws_ec2_key_name" {
 variable "aws_vpc_sg_ingress_rules" {
   type = map(object({
     cidr_ipv4 = string
-    from_port = string
+    from_port = number
     ip_protocol = string
-    to_port = string
+    to_port = number
   }))
 }
 
 variable "aws_vpc_sg_egress_rules" {
   type = map(object({
     cidr_ipv4 = string
-    from_port = string
+    from_port = number
     ip_protocol = string
-    to_port = string
+    to_port = number
   }))
 }
