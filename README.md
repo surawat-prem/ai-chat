@@ -17,12 +17,20 @@ pre-requirements:
     terraform cloud ( login with github for repo access )
         -   setup organization 'name' and workspace name 'network' with
             -   VCS branch 'non-prod'
-            -   Working directory at '/cloud-deployment/network-workspace
+            -   Working directory at '/cloud-deployment/network-workspace'
             -   Watch change pattern at '/cloud-deployment/network-workspace/*'
+        -   setup workspace name 'controller' with
+            -   VCS branch 'non-prod'
+            -   Working directory at '/cloud-deployment/controller-workspace'
+            -   Watch change pattern at '/cloud-deployment/controller-workspace/*'
     AWS account
         -   create IAM user for terraform
-            -   get AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_DEFAULT_REGION=ap-southeast-1 and setup in terraform cloud as terraform-variables 'sensitive'
+            -   get AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_DEFAULT_REGION=ap-southeast-1 and setup in terraform cloud as terraform-variables 'sensitive' (*for all workspace)
 
 requirements:
     terraform cloud variables:
-        -   PERSONAL_PUBLIC_KEY ( your ssh public key for controller vm ssh)
+        -   PERSONAL_PUBLIC_KEY ( your ssh public key for controller vm ssh) - workspace 'controller'
+
+steps:
+    workspace 'network'
+        -   trigger
