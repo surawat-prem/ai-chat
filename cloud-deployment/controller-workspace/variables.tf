@@ -60,6 +60,7 @@ variable "aws_vpc_sg_ingress_rules" {
     }
   }
 }
+
 variable "aws_vpc_sg_egress_rules" {
   type = map(object({
     cidr_block = string
