@@ -43,8 +43,4 @@ module "aws-ec2-noble-controller" {
   # aws_ebs_volume_size = var.aws_ec2_controller_ebs_volume_size
   # aws_ebs_volume_tags = var.aws_ec2_controller_ebs_volume_tags
 
-  depends_on = [ 
-    module.aws-vpc,
-    module.aws-subnet-controller
-   ]
 }
