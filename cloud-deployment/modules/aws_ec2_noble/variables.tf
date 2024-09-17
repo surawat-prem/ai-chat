@@ -49,7 +49,7 @@ variable "aws_vpc_sg_ingress_rules" {
 
 variable "aws_vpc_sg_egress_rules" {
   type = map(object({
-    cidr_block = string
+    cidr_ipv4 = string
     from_port = string
     ip_protocol = string
     to_port = string
