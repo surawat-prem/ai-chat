@@ -11,7 +11,7 @@ provider "aws" {
 data "terraform_remote_state" "network" {
   backend = "remote"
   config = {
-    organization = "surawat-personal-project"
+    organization = "chat-system-infra"
     workspaces = {
       name = "network"
     }
