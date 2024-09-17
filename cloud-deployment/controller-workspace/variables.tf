@@ -1,89 +1,78 @@
+# KEY PAIR
+variable "aws_key_pair_personal_name" {
+  default = "prem-personal-keypair"
+}
+variable "PERSONAL_PUBLIC_KEY" {
+  type = string
+}
+
 variable "AWS_DEFAULT_REGION" {
     type = string
 }
 
-# VPC
-variable "aws_vpcs" {
-    type = map(object({
-      cidr_block = string
-      aws_vpc_tag = map(string)
-    }))
-
-    default = {
-      vpc_workload = {
-        "cidr_block" = "10.0.64.0/18"
-        "aws_vpc_tag" = {
-          Name = "workload"
-        }
-      },
-      vpc_controller = {
-        "cidr_block" = "172.16.0.0/22"
-        "aws_vpc_tag" = {
-          Name = "controller"
-        }
-      }
-    }
+# EC2 NOBLE CONTROLLER
+variable "aws_ec2_controller_instance_type" {
+  default = "t3.micro"
 }
-
-# # ROUTE TABLES
-
-# variable "aws_route_table_subnet_controller_tags" {
+variable "aws_ec2_controller_tags" {
+  default = {
+    Name = "controller-vm"
+    Environment = "non-prod"
+  }
+}
+variable "aws_ec2_controller_net_tags" {
+  default = {
+    Name = "controller-vm-network-interface"
+    Environment = "non-prod"
+  }
+}
+variable "aws_ec2_controller_net_private_ips" {
+  default = ["172.16.0.10"]
+}
+variable "aws_ec2_controller_sg_tags" {
+  default = {
+    Name = "controller-vm-security-group"
+    Environment = "non-prod"
+  }
+}
+# variable "aws_ec2_controller_ebs_volume_size" {
+#   default = 5
+# }
+# variable "aws_ec2_controller_ebs_volume_tags" {
 #   default = {
-#     Name = "subnet-controller-route"
-#   }
+#     Name = "controller-vm-ebs-volume"
+#     Environment = "non-prod"
+#   } 
 # }
-
-# SUBNET WORKLOAD
-variable "aws_subnets_workload" {
-    type = map(object({
-      cidr_block = string
-      availability_zone = string
-      aws_subnet_tag = map(string)
-    }))
-
-    default = {
-      k8s-non-prod-1 = {
-        "cidr_block" = "10.0.64.0/20"
-        "availability_zone" = "ap-southeast-1a"
-        "aws_subnet_tag" = {
-          Name = "k8s-non-prod-1"
-        }
-      },
-      dk8s-non-prod-2 = {
-        "cidr_block" = "10.0.80.0/20"
-        "availability_zone" = "ap-southeast-1b"
-        "aws_subnet_tag" = {
-          Name = "k8s-non-prod-2"
-        }
-      }
+variable "aws_vpc_sg_ingress_rules" {
+  type = map(object({
+    cidr_block = string
+    from_port = string
+    ip_protocol = string
+    to_port = string
+  }))
+  default = {
+    ssh = {
+      cidr_block = "49.49.236.98"
+      from_port = "22"
+      ip_protocol = "tcp"
+      to_port = "22"
     }
+  }
 }
-
-# SUBNET CONTROLLER
-variable "aws_subnets_controller" {
-    type = map(object({
-      cidr_block = string
-      availability_zone = string
-      aws_subnet_tag = map(string)
-    }))
-
-    default = {
-      controller-1 = {
-        "cidr_block" = "172.16.0.0/24"
-        "availability_zone" = "ap-southeast-1a"
-        "aws_subnet_tag" = {
-          Name = "controller-1"
-        }
-      }
+variable "aws_vpc_sg_egress_rules" {
+  type = map(object({
+    cidr_block = string
+    from_port = string
+    ip_protocol = string
+    to_port = string
+  }))
+  default = {
+    tcp-internet = {
+      cidr_block = "0.0.0.0"
+      from_port = "80-443"
+      ip_protocol = "tcp"
+      to_port = "80-443"
     }
+  }
 }
-
-# # KEY PAIR
-# variable "aws_key_pair_personal_name" {
-#   default = "prem-personal-keypair"
-# }
-# variable "PERSONAL_PUBLIC_KEY" {
-#   type = string
-# }
-
-#trigger plan

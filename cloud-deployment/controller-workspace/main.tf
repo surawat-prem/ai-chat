@@ -16,12 +16,11 @@ module "aws-ec2-noble-controller" {
   aws_ec2_net_vpc_id = module.aws-vpc.vpc_id["vpc_controller"]
 
   aws_ec2_security_group_tags = var.aws_ec2_controller_sg_tags
-  # aws_security_group_cidr_ipv4 = var.PERSONAL_PUBLIC_IP
   aws_vpc_sg_ingress_rules = var.aws_vpc_sg_ingress_rules
   aws_vpc_sg_egress_rules = var.aws_vpc_sg_egress_rules
 
-  aws_ebs_volume_size = var.aws_ec2_controller_ebs_volume_size
-  aws_ebs_volume_tags = var.aws_ec2_controller_ebs_volume_tags
+  # aws_ebs_volume_size = var.aws_ec2_controller_ebs_volume_size
+  # aws_ebs_volume_tags = var.aws_ec2_controller_ebs_volume_tags
 
   depends_on = [ 
     module.aws-vpc,

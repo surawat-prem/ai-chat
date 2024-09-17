@@ -29,30 +29,22 @@ resource "aws_security_group" "noble" {
 }
 
 resource "aws_vpc_security_group_ingress_rule" "noble-ingress-rule" {
-  count = length(var.sg_ingress_rules)
-
-  type = "ingress"
+  for_each = var.aws_vpc_sg_ingress_rules
   security_group_id = aws_security_group.noble.id
-  cidr_ipv4 = var.ingress_rules[count.index].cidr_ipv4
-  from_port = var.ingress_rules[count.index].from_port
-  ip_protocol = var.ingress_rules[count.index].ip_protocol
-  to_port = var.ingress_rules[count.index].to_port
+  cidr_ipv4 = each.value["cidr_ipv4"]
+  from_port = each.value["from_port"]
+  ip_protocol = each.value["ip_protocol"]
+  to_port = each.value["to_port"]
   
 }
 
-resource "aws_vpc_security_group_egress_rule" "noble-gress-rule" {
+resource "aws_vpc_security_group_egress_rule" "noble-egress-rule" {
   for_each = var.aws_vpc_sg_egress_rules
   security_group_id = aws_security_group.noble.id
   cidr_ipv4 = each.value["cidr_ipv4"]
   from_port = each.value["from_port"]
   ip_protocol = each.value["ip_protocol"]
   to_port = each.value["to_port"]
-}
-
-resource "aws_ebs_volume" "noble" {
-  availability_zone = aws_instance.noble.availability_zone
-  size = var.aws_ebs_volume_size
-  tags = var.aws_ebs_volume_tags
 }
 
 resource "aws_eip" "noble" {
@@ -75,8 +67,14 @@ resource "aws_instance" "noble" {
   tags = var.aws_ec2_tags
 }
 
-resource "aws_volume_attachment" "noble" {
-  device_name = "/dev/sdf"
-  volume_id = aws_ebs_volume.noble.id
-  instance_id = aws_instance.noble.id
-}
+# resource "aws_ebs_volume" "noble" {
+#   availability_zone = aws_instance.noble.availability_zone
+#   size = var.aws_ebs_volume_size
+#   tags = var.aws_ebs_volume_tags
+# }
+
+# resource "aws_volume_attachment" "noble" {
+#   device_name = "/dev/sdf"
+#   volume_id = aws_ebs_volume.noble.id
+#   instance_id = aws_instance.noble.id
+# }

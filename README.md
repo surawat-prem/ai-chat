@@ -33,4 +33,6 @@ requirements:
 
 steps:
     workspace 'network'
-        -   trigger
+        -   trigger 'network' workspace plan and apply
+[TODO]        -   input value for 'MY_PUBLIC_IP' for ssh sg rule in ...
+        -   trigger 'controller' workspace plan and apply

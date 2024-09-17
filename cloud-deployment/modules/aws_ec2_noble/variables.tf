@@ -30,19 +30,15 @@ variable "aws_ec2_key_name" {
   type = string
 }
 
-variable "aws_ebs_volume_size" {
-  type = number
-}
+# variable "aws_ebs_volume_size" {
+#   type = number
+# }
 
-variable "aws_ebs_volume_tags" {
-  type = map(string)
-}
+# variable "aws_ebs_volume_tags" {
+#   type = map(string)
+# }
 
-variable "" {
-  
-}
-
-variable "sg_ingress_rules" {
+variable "aws_vpc_sg_ingress_rules" {
   type = list(object({
     cidr_ipv4 = string
     from_port = string
