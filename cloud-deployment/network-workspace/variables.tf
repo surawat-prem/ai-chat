@@ -11,7 +11,7 @@ variable "aws_vpcs" {
 
     default = {
       vpc_workload = {
-        "cidr_block" = "10.0.0.0/16"
+        "cidr_block" = "10.0.64.0/18"
         "aws_vpc_tag" = {
           Name = "workload"
         }
@@ -37,20 +37,23 @@ variable "aws_vpcs" {
 variable "aws_subnets_workload" {
     type = map(object({
       cidr_block = string
+      availability_zone = string
       aws_subnet_tag = map(string)
     }))
 
     default = {
-      k9s-1 = {
-        "cidr_block" = "10.0.0.0/20"
+      k8s-non-prod-1 = {
+        "cidr_block" = "10.0.64.0/20"
+        "availability_zone" = "ap-southeast-1a"
         "aws_subnet_tag" = {
-          Name = "k9s-1"
+          Name = "k8s-non-prod-1"
         }
       },
-      db-1 = {
-        "cidr_block" = "10.0.48.0/24"
+      dk8s-non-prod-2 = {
+        "cidr_block" = "10.0.80.0/20"
+        "availability_zone" = "ap-southeast-1b"
         "aws_subnet_tag" = {
-          Name = "db-1"
+          Name = "k8s-non-prod-2"
         }
       }
     }
