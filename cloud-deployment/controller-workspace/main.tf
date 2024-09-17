@@ -1,11 +1,11 @@
 module "aws-key-pair-personal" {
-  source = "./modules/aws_key_pair"
+  source = "../modules/aws_key_pair"
   aws_key_pair_name = var.aws_key_pair_personal_name
   PERSONAL_PUBLIC_KEY = var.PERSONAL_PUBLIC_KEY
 }
 
 module "aws-ec2-noble-controller" {
-  source = "./modules/aws_ec2_noble"
+  source = "../modules/aws_ec2_noble"
   aws_ec2_instance_type = var.aws_ec2_controller_instance_type
   aws_ec2_key_name = var.aws_key_pair_personal_name
   aws_ec2_tags = var.aws_ec2_controller_tags
