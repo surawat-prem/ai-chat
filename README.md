@@ -23,6 +23,8 @@ pre-requirements:
             -   VCS branch 'non-prod'
             -   Working directory at '/cloud-deployment/controller-workspace'
             -   Watch change pattern at '/cloud-deployment/controller-workspace/*'
+            -   Configure 'network' workspace enable 'Remote state sharing' with workspace 'controller'
+        
     AWS account
         -   create IAM user for terraform
             -   get AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_DEFAULT_REGION=ap-southeast-1 and setup in terraform cloud as terraform-variables 'sensitive' (*for all workspace)
