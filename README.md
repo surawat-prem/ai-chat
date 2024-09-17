@@ -21,7 +21,7 @@ pre-requirements:
             -   Watch change pattern at '/cloud-deployment/network-workspace/*'
     AWS account
         -   create IAM user for terraform
-            -   get AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_DEFAULT_REGION=ap-southeast-1 and setup in terraform cloud variables 'sensitive'
+            -   get AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_DEFAULT_REGION=ap-southeast-1 and setup in terraform cloud as terraform-variables 'sensitive'
 
 requirements:
     terraform cloud variables:
