@@ -38,3 +38,10 @@ module "aws-route-table-subnet-controller" {
   aws_route_table_tags = var.aws_route_table_subnet_controller_tags
   aws_ec2_net_subnet_id = module.aws-subnet-controller.subnet_id["controller-1"]
 }
+
+module "aws-vpc-peering" {
+  source = "../modules/aws_vpc_peering"
+  peer_vpc_id = module.aws-vpc.vpc_id["vpc_controller"]
+  vpc_id = module.aws-vpc.vpc_id["vpc_workload"]
+  aws_vpc_peer_tags = var.aws_vpc_peer_tags
+}

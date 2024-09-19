@@ -25,6 +25,13 @@ variable "aws_vpcs" {
     }
 }
 
+# VPC PEERING
+variable "aws_vpc_peer_tags" {
+  default = {
+    Name = vpc-peering-controller-workload
+  }
+}
+
 # # ROUTE TABLES
 
 variable "aws_route_table_subnet_controller_tags" {
