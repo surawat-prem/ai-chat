@@ -10,9 +10,6 @@ resource "aws_iam_user_group_membership" "kops" {
     aws_iam_group.kops.id
   ]
 }
-resource "aws_iam_access_key" "kops" {
-  user = aws_iam_user.kops.name
-}
 
 data "aws_iam_policy_document" "kops-policy" {
   statement {
