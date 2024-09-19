@@ -53,7 +53,7 @@ variable "aws_vpc_sg_ingress_rules" {
   }))
   default = {
     ssh = {
-      cidr_ipv4 = "49.49.236.98/32"
+      cidr_ipv4 = "49.49.234.136/32"
       from_port = 22
       ip_protocol = "tcp"
       to_port = 22
