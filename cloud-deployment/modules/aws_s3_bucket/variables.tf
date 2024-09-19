@@ -1,4 +1,4 @@
-variable "aws_bucket_name" {
+variable "aws_bucket_name_prefix" {
   type = string
 }
 

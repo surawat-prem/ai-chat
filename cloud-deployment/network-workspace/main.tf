@@ -52,7 +52,7 @@ module "aws-kops-user-iam" {
 
 module "aws-s3-kops" {
   source = "../modules/aws_s3_bucket"
-  aws_bucket_name = var.kops_aws_bucket_name
+  aws_bucket_name_prefix = var.kops_aws_bucket_name_prefix
   aws_s3_bucket_object_ownership = var.kops_aws_bucket_object_ownership
   aws_s3_bucket_acl = var.kops_aws_bucket_acl
   aws_s3_bucket_block_public_acls = var.kops_aws_bucket_block_public_acls

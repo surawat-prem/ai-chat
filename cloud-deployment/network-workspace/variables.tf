@@ -86,8 +86,8 @@ variable "aws_subnets_controller" {
 }
 
 # S3
-variable "kops_aws_bucket_name" {
-  default = "kops"
+variable "kops_aws_bucket_name_prefix" {
+  default = "prem-s3-kops-777"
 }
 variable "kops_aws_bucket_tags" {
   default = {
