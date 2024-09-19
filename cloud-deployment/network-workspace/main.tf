@@ -53,5 +53,10 @@ module "aws-kops-user-iam" {
 module "aws-s3-kops" {
   source = "../modules/aws_s3_bucket"
   aws_bucket_name = var.kops_aws_bucket_name
-  aws_bucket_tags = var.kops_aws_bucket_tags
+  aws_s3_bucket_object_ownership = var.kops_aws_bucket_object_ownership
+  aws_s3_bucket_acl = var.kops_aws_bucket_acl
+  aws_s3_bucket_block_public_acls = var.kops_aws_bucket_block_public_acls
+  aws_s3_bucket_block_public_policy = var.kops_aws_bucket_block_public_policy
+  aws_s3_bucket_ignore_public_acls = var.kops_aws_bucket_ignore_public_acls
+  aws_s3_bucket_restrict_public_buckets = var.kops_aws_bucket_restrict_public_buckets
 }

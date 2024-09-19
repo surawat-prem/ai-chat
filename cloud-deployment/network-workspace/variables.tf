@@ -94,3 +94,24 @@ variable "kops_aws_bucket_tags" {
     Name = "kops-bucket"
   }
 }
+
+
+
+variable "kops_aws_bucket_object_ownership" {
+  default = "BucketOwnerPreferred"
+}
+variable "kops_aws_bucket_acl" {
+  default = "public-read"
+}
+variable "kops_aws_bucket_block_public_acls" {
+  default = false
+}
+variable "kops_aws_bucket_block_public_policy" {
+  default = false
+}
+variable "kops_aws_bucket_ignore_public_acls" {
+  default = false
+}
+variable "kops_aws_bucket_restrict_public_buckets" {
+  default = false
+}
