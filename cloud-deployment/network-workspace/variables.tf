@@ -27,11 +27,14 @@ variable "aws_vpcs" {
 
 # # ROUTE TABLES
 
-# variable "aws_route_table_subnet_controller_tags" {
-#   default = {
-#     Name = "subnet-controller-route"
-#   }
-# }
+variable "aws_route_table_subnet_controller_tags" {
+  default = {
+    Name = "subnet-controller-route"
+  }
+}
+variable "PERSONAL_PUBLIC_IP" {
+  type = string
+}
 
 # SUBNET WORKLOAD
 variable "aws_subnets_workload" {

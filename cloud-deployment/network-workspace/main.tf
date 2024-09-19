@@ -29,11 +29,11 @@ module "aws-subnet-controller" {
   depends_on = [ module.aws-vpc ]
 }
 
-# module "aws-route-table-subnet-controller" {
-#   source = "./modules/aws_route_table"
-#   vpc_id = module.aws-vpc.vpc_id["vpc_controller"]
-#   aws_route_table_cidr_block = var.PERSONAL_PUBLIC_IP
-#   aws_route_table_gw_id = module.aws-vpc.vpc_gw_id
-#   aws_route_table_tags = var.aws_route_table_subnet_controller_tags
-#   aws_ec2_net_subnet_id = module.aws-subnet-controller.subnet_id["controller-1"]
-# }
+module "aws-route-table-subnet-controller" {
+  source = "../modules/aws_route_table"
+  vpc_id = module.aws-vpc.vpc_id["vpc_controller"]
+  aws_route_table_cidr_block = var.PERSONAL_PUBLIC_IP
+  aws_route_table_gw_id = module.aws-vpc.vpc_gw_id
+  aws_route_table_tags = var.aws_route_table_subnet_controller_tags
+  aws_ec2_net_subnet_id = module.aws-subnet-controller.subnet_id["controller-1"]
+}
