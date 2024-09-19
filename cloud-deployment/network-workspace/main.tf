@@ -49,3 +49,9 @@ module "aws-vpc-peering" {
 module "aws-kops-user-iam" {
   source = "../modules/aws_kops_iam"
 }
+
+module "aws-s3-kops" {
+  source = "../modules/aws_s3_bucket"
+  aws_bucket_name = var.kops_aws_bucket_name
+  aws_bucket_tags = var.kops_aws_bucket_tags
+}

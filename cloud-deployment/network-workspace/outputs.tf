@@ -14,6 +14,6 @@ output "subnet_ids_controller" {
     value = module.aws-subnet-controller.subnet_id
 }
 
-# output "aws_ec2_noble-controller_id" {
-#     value = module.aws-ec2-noble-controller.aws_ec2_id
-# }
+output "kops_bucket_domain_name" {
+  value = module.aws-s3-kops.bucket_domain_name
+}

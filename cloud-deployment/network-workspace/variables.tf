@@ -85,12 +85,12 @@ variable "aws_subnets_controller" {
     }
 }
 
-# # KEY PAIR
-# variable "aws_key_pair_personal_name" {
-#   default = "prem-personal-keypair"
-# }
-# variable "PERSONAL_PUBLIC_KEY" {
-#   type = string
-# }
-
-#trigger plan
+# S3
+variable "kops_aws_bucket_name" {
+  default = "kops"
+}
+variable "kops_aws_bucket_tags" {
+  default = {
+    Name = "kops-bucket"
+  }
+}
