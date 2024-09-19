@@ -28,7 +28,6 @@ data "aws_iam_policy_document" "kops-policy" {
     ]
     resources = ["*"]
   }
-  version = "2024-09-19"
 }
 
 resource "aws_iam_group_policy" "kops" {
