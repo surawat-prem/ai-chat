@@ -28,7 +28,7 @@ variable "aws_vpcs" {
 # VPC PEERING
 variable "aws_vpc_peer_tags" {
   default = {
-    Name = vpc-peering-controller-workload
+    Name = "vpc-peering-controller-workload"
   }
 }
 
