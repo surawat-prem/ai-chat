@@ -32,9 +32,6 @@ variable "aws_route_table_subnet_controller_tags" {
     Name = "subnet-controller-route"
   }
 }
-variable "PERSONAL_PUBLIC_IP" {
-  type = string
-}
 
 # SUBNET WORKLOAD
 variable "aws_subnets_workload" {
