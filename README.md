@@ -10,7 +10,7 @@ Repository structure
 
 ---
 
-cloud-deployment
+**cloud-deployment**
 pre-requirements:
     github repo
         -   setup github app integration with terraform
@@ -35,6 +35,15 @@ requirements:
 
 steps:
     workspace 'network'
+        -   create unique name for 
         -   trigger 'network' workspace plan and apply
-[TODO]        -   input value for 'MY_PUBLIC_IP' for ssh sg rule in ...
+    workspace 'controller'
+        -   input your public ip to cidr_ipv4 variable for 'aws_vpc_sg_ingress_rules' for ssh access (ansible)
         -   trigger 'controller' workspace plan and apply
+
+**ansible**
+pre-requirements:
+    -   run ansible/ansible_playbooks/generate-secrets.sh
+    
+steps
+    -   

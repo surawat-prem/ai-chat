@@ -1,6 +1,7 @@
 ---
 - name: Deploy common packages
-  hosts: all
+  hosts: controllers
   become: true
   roles:
     - commons
+    - install-kops

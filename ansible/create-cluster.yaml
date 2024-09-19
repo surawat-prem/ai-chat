@@ -1,0 +1,8 @@
+- name: Create kubernetes cluster with kops
+  hosts: controllers
+  become: true
+  vars_files:
+    - ./group_vars/all/vars.yaml
+    - ./.secrets/kops-secrets.yaml
+  roles:
+    - kops-create

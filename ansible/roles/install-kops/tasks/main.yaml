@@ -1,0 +1,6 @@
+---
+- name: Download kops binary
+  ansible.builtin.get_url:
+    url: https://github.com/kubernetes/kops/releases/download/v1.28.0/kops-linux-amd64
+    dest: /usr/local/bin/kops
+    mode: "0755"

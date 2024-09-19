@@ -1,0 +1,16 @@
+---
+- name: Create cluster config with kops
+  ansible.builtin.shell: |
+    export KOPS_STATE_STORE=s3://{{ S3_NAME }}
+    export AWS_ACCESS_KEY_ID={{ AWS_ACCESS_KEY_ID }}
+    export AWS_SECRET_ACCESS_KEY={{ AWS_SECRET_ACCESS_KEY }}
+    kops create cluster {{ NAME }} \
+      --node-count {{ NODE_COUNT }} \
+      --zones {{ ZONES }} \
+      --node-size {{ NODE_SIZE }} \
+      --control-plane-size {{ CONTROL_PLANE_SIZE }} \
+      --control-plane-zones {{ ZONES }} \
+      --networking cilium \
+      --yes \
+      --dry-run \
+      -oyaml > /tmp/test-kops.yaml
