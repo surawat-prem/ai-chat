@@ -4,7 +4,6 @@ variable "aws_key_pair_personal_name" {
 }
 variable "PERSONAL_PUBLIC_KEY" {
   type = string
-  default = ""
 }
 
 variable "AWS_DEFAULT_REGION" {
