@@ -13,11 +13,7 @@ resource "aws_iam_user_group_membership" "kops" {
 resource "aws_iam_access_key" "kops" {
   user = aws_iam_user.kops.name
 }
-resource "aws_iam_group_policy" "kops" {
-  name = "kops_group_policy"
-  group = aws_iam_group.kops.id
-  policy = data.aws_iam_policy_kops.kops.json
-}
+
 data "aws_iam_policy_kops" "kops-policy" {
   statement {
     effect = "Allow"
@@ -33,4 +29,10 @@ data "aws_iam_policy_kops" "kops-policy" {
     resources = ["*"]
   }
   version = "2024-09-19"
+}
+
+resource "aws_iam_group_policy" "kops" {
+  name = "kops_group_policy"
+  group = aws_iam_group.kops.id
+  policy = data.aws_iam_policy_kops.kops-policy.json
 }
