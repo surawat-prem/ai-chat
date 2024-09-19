@@ -45,3 +45,7 @@ module "aws-vpc-peering" {
   vpc_id = module.aws-vpc.vpc_id["vpc_workload"]
   aws_vpc_peer_tags = var.aws_vpc_peer_tags
 }
+
+module "aws-kops-user-iam" {
+  source = "../modules/aws_kops_iam"
+}
