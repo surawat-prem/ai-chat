@@ -1,0 +1,4 @@
+controllers:
+  hosts:
+    controller_01:
+      ansible_host: 13.213.204.111

@@ -1,0 +1,6 @@
+---
+- name: Deploy common packages
+  hosts: all
+  become: true
+  roles:
+    - commons
