@@ -14,7 +14,7 @@ resource "aws_iam_access_key" "kops" {
   user = aws_iam_user.kops.name
 }
 
-data "aws_iam_policy_kops" "kops-policy" {
+data "aws_iam_policy_document" "kops-policy" {
   statement {
     effect = "Allow"
     actions = [
@@ -34,5 +34,5 @@ data "aws_iam_policy_kops" "kops-policy" {
 resource "aws_iam_group_policy" "kops" {
   name = "kops_group_policy"
   group = aws_iam_group.kops.id
-  policy = data.aws_iam_policy_kops.kops-policy.json
+  policy = data.aws_iam_policy_document.kops-policy.json
 }
