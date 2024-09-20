@@ -4,13 +4,14 @@
     export KOPS_STATE_STORE=s3://{{ S3_NAME }}
     export AWS_ACCESS_KEY_ID={{ AWS_ACCESS_KEY_ID }}
     export AWS_SECRET_ACCESS_KEY={{ AWS_SECRET_ACCESS_KEY }}
+    export VPC_ID={{ VPC_ID }}
     kops create cluster {{ NAME }} \
       --node-count {{ NODE_COUNT }} \
       --zones {{ ZONES }} \
       --node-size {{ NODE_SIZE }} \
+      --control-plane-count {{ CONTROL_PLANE_NODE_COUNT }} \
       --control-plane-size {{ CONTROL_PLANE_SIZE }} \
-      --control-plane-zones {{ ZONES }} \
+      --control-plane-zones {{ CONTROL_PLANE_ZONE }} \
+      --subnets {{ SUBNET_IDS }} \
       --networking cilium \
-      --yes \
-      --dry-run \
-      -oyaml > /tmp/test-kops.yaml
+      --yes

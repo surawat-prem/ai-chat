@@ -43,6 +43,7 @@ steps:
 
 **ansible**
 pre-requirements:
+    -   has hosted zone in route53 and add value for ansible/group_vars/all/vars.yaml "DNS_ZONE"
     -   run ansible/ansible_playbooks/generate-secrets.sh
     
 steps
