@@ -56,11 +56,18 @@ variable "aws_subnets_workload" {
           Name = "k8s-non-prod-1"
         }
       },
-      dk8s-non-prod-2 = {
+      k8s-non-prod-2 = {
         "cidr_block" = "10.0.80.0/20"
         "availability_zone" = "ap-southeast-1b"
         "aws_subnet_tag" = {
           Name = "k8s-non-prod-2"
+        }
+      },
+      k8s-non-prod-3 = {
+        "cidr_block" = "10.0.96.0/20"
+        "availability_zone" = "ap-southeast-1c"
+        "aws_subnet_tag" = {
+          Name = "k8s-non-prod-3"
         }
       }
     }
