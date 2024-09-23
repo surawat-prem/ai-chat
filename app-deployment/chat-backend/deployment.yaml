@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chat-backend
+  namespace: app
+  labels:
+    app: chat-backend
+spec:
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chat-backend
+  template:
+    metadata:
+      labels:
+        app: chat-backend
+    spec:
+      serviceAccountName: chat-backend
+      containers:
+      - image: surawatprem/chat-backend:v2
+        name: chat-backend
+        resources:
+          requests:
+            cpu: "50m"
+            memory: "100M"
+          limits:
+            cpu: "100m"
+            memory: "150M"
+        envFrom:
+        - configMapRef:
+            name: chat-backend
+        env:
+          - name: OPENAI_API_KEY
+            valueFrom:
+              secretKeyRef:
+                name: chat-backend
+                key: OPENAI_API_KEY
+        ports:
+        - containerPort: 80
+          name: chat-backend
+        volumeMounts: []
+      volumes: []
+      restartPolicy: Always

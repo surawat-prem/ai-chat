@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: chat-backend
+  namespace: app
+spec:
+  selector:
+    app: chat-backend
+  type: ClusterIP
+  ports:
+  - name: chat-backend
+    protocol: TCP
+    port: 80
+    targetPort: 80

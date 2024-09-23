@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chat-server
+  namespace: app
+  labels:
+    app: chat-server
+spec:
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chat-server
+  template:
+    metadata:
+      labels:
+        app: chat-server
+    spec:
+      serviceAccountName: chat-server
+      containers:
+      - image: surawatprem/chat-server:v1
+        name: chat-server
+        resources:
+          requests:
+            cpu: "50m"
+            memory: "100M"
+          limits:
+            cpu: "100m"
+            memory: "150M"
+        envFrom:
+        - configMapRef:
+            name: chat-server
+        env: []
+        ports:
+        - containerPort: 80
+          name: chat-server
+        volumeMounts: []
+      volumes: []
+      restartPolicy: Always
