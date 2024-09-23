@@ -21,7 +21,9 @@ data "aws_iam_policy_document" "kops-policy" {
       "iam:*",
       "vpc:*",
       "sqs:*",
-      "events:*"
+      "events:*",
+      "autoscaling:*",
+      "elasticloadbalancing:*"
     ]
     resources = ["*"]
   }
