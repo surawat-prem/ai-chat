@@ -45,6 +45,7 @@ variable "aws_subnets_workload" {
     type = map(object({
       cidr_block = string
       availability_zone = string
+      map_public_ip_on_launch = bool
       aws_subnet_tag = map(string)
     }))
 
@@ -52,6 +53,7 @@ variable "aws_subnets_workload" {
       k8s-non-prod-1 = {
         "cidr_block" = "10.0.64.0/20"
         "availability_zone" = "ap-southeast-1a"
+        "map_public_ip_on_launch" = false
         "aws_subnet_tag" = {
           Name = "k8s-non-prod-1"
           SubnetType = "Private"
@@ -60,6 +62,7 @@ variable "aws_subnets_workload" {
       k8s-non-prod-2 = {
         "cidr_block" = "10.0.80.0/20"
         "availability_zone" = "ap-southeast-1b"
+        "map_public_ip_on_launch" = false
         "aws_subnet_tag" = {
           Name = "k8s-non-prod-2"
           SubnetType = "Private"
@@ -68,6 +71,7 @@ variable "aws_subnets_workload" {
       k8s-non-prod-3 = {
         "cidr_block" = "10.0.96.0/20"
         "availability_zone" = "ap-southeast-1c"
+        "map_public_ip_on_launch" = false
         "aws_subnet_tag" = {
           Name = "k8s-non-prod-3"
           SubnetType = "Private"
@@ -76,24 +80,9 @@ variable "aws_subnets_workload" {
       k8s-utility-1 = {
         "cidr_block" = "10.0.124.0/24"
         "availability_zone" = "ap-southeast-1a"
+        "map_public_ip_on_launch" = true
         "aws_subnet_tag" = {
           Name = "k8s-utility-1"
-          SubnetType = "Utility"
-        }
-      },
-      k8s-utility-2 = {
-        "cidr_block" = "10.0.125.0/24"
-        "availability_zone" = "ap-southeast-1b"
-        "aws_subnet_tag" = {
-          Name = "k8s-utility-2"
-          SubnetType = "Utility"
-        }
-      },
-      k8s-utility-3 = {
-        "cidr_block" = "10.0.126.0/24"
-        "availability_zone" = "ap-southeast-1c"
-        "aws_subnet_tag" = {
-          Name = "k8s-utility-3"
           SubnetType = "Utility"
         }
       }
