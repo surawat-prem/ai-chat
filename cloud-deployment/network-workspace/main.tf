@@ -29,6 +29,12 @@ module "aws-subnet-controller" {
   depends_on = [ module.aws-vpc ]
 }
 
+module "aws-utility-network-interface" {
+  source = "../modules/aws_network_interface"
+  subnet_id = module.aws-subnet-controller.subnet_id["k8s-utility-1"]
+  associate_public_ip_address = true
+}
+
 module "aws-route-table-subnet-controller" {
   source = "../modules/aws_route_table"
   vpc_id = module.aws-vpc.vpc_id["vpc_controller"]
