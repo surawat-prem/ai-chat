@@ -101,6 +101,7 @@ variable "aws_subnets_controller" {
       controller-1 = {
         "cidr_block" = "172.16.0.0/24"
         "availability_zone" = "ap-southeast-1a"
+        "map_public_ip_on_launch" = false
         "aws_subnet_tag" = {
           Name = "controller-1"
         }
