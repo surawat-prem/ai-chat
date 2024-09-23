@@ -30,7 +30,7 @@ module "aws-subnet-controller" {
 }
 
 module "aws-utility-network-interface" {
-  source = "../modules/aws_network_interface"
+  source = "../modules/aws_subnet_network_interface"
   subnet_id = module.aws-subnet-workload.subnet_id["k8s-utility-1"]
 }
 
