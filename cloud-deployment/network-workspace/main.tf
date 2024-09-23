@@ -31,8 +31,7 @@ module "aws-subnet-controller" {
 
 module "aws-utility-network-interface" {
   source = "../modules/aws_network_interface"
-  subnet_id = module.aws-subnet-controller.subnet_id["k8s-utility-1"]
-  associate_public_ip_address = true
+  subnet_id = module.aws-subnet-workload.subnet_id["k8s-utility-1"]
 }
 
 module "aws-route-table-subnet-controller" {
