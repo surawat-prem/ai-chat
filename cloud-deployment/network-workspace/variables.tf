@@ -54,6 +54,7 @@ variable "aws_subnets_workload" {
         "availability_zone" = "ap-southeast-1a"
         "aws_subnet_tag" = {
           Name = "k8s-non-prod-1"
+          kubernetes.io/role/internal-elb = "1"
         }
       },
       k8s-non-prod-2 = {
@@ -61,6 +62,7 @@ variable "aws_subnets_workload" {
         "availability_zone" = "ap-southeast-1b"
         "aws_subnet_tag" = {
           Name = "k8s-non-prod-2"
+          kubernetes.io/role/internal-elb = "1"
         }
       },
       k8s-non-prod-3 = {
@@ -68,6 +70,7 @@ variable "aws_subnets_workload" {
         "availability_zone" = "ap-southeast-1c"
         "aws_subnet_tag" = {
           Name = "k8s-non-prod-3"
+          kubernetes.io/role/internal-elb = "1"
         }
       }
     }
