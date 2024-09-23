@@ -1,0 +1,15 @@
+server {
+    listen ${PORT};
+    server_name ${HOSTNAME};  # Match based on the environment variable
+
+    location /chat {
+        root /usr/share/nginx/html;
+        index index.html;
+        try_files /index.html =404;
+    }
+
+    # Optional: Handle requests that do not match the hostname
+    location / {
+        return 404;  # Return a 404 for unmatched hostnames
+    }
+}
