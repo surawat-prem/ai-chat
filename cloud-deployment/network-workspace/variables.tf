@@ -72,6 +72,30 @@ variable "aws_subnets_workload" {
           Name = "k8s-non-prod-3"
           SubnetType = "Private"
         }
+      },
+      k8s-utility-1 = {
+        "cidr_block" = "10.0.124.0/24"
+        "availability_zone" = "ap-southeast-1a"
+        "aws_subnet_tag" = {
+          Name = "k8s-utility-1"
+          SubnetType = "Utility"
+        }
+      },
+      k8s-utility-2 = {
+        "cidr_block" = "10.0.125.0/24"
+        "availability_zone" = "ap-southeast-1b"
+        "aws_subnet_tag" = {
+          Name = "k8s-utility-2"
+          SubnetType = "Utility"
+        }
+      },
+      k8s-utility-3 = {
+        "cidr_block" = "10.0.126.0/24"
+        "availability_zone" = "ap-southeast-1c"
+        "aws_subnet_tag" = {
+          Name = "k8s-utility-3"
+          SubnetType = "Utility"
+        }
       }
     }
 }
