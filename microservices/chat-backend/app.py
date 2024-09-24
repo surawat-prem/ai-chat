@@ -105,5 +105,3 @@ if __name__ == '__main__':
     logger.info("Starting application.")
     asyncio.run(main())
 
-
-#Trigger build
