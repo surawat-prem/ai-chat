@@ -1,24 +1,16 @@
 name: Build and Push Docker Images
 
 on:
-  push:
-    branches:
-      - non-prod
-    paths:
-      - 'microservices/chat-fe/**'
-      - 'microservices/chat-backend/**'
-      - 'microservices/chat-server/**'
   workflow_dispatch:
+    inputs:
+      changed_apps:
+        description: 'Comma-separated list of changed apps'
+        required: true
+        default: ''
+
 jobs:
   build:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        app:
-          - chat-fe
-          - chat-backend
-          - chat-server
 
     steps:
       - name: Checkout code
@@ -34,23 +26,20 @@ jobs:
         id: tag
         run: |
           DATE=$(date +'%Y%m%d')
-          RANDOM_NUMBER=$(( RANDOM % 1000 )) # Generate a random number between 0-999
+          RANDOM_NUMBER=$(( RANDOM % 1000 ))
           TAG="${DATE}-${RANDOM_NUMBER}"
           echo "TAG=${TAG}" >> $GITHUB_ENV
 
-      - name: Build Docker image
+      - name: Build and Push Docker Images
         run: |
-          docker build -t surawatprem/${{ matrix.app }}:${{ env.TAG }} ./${{ matrix.app }}
-
-      - name: Push Docker image
-        run: |
-          docker push your-docker-repo/${{ matrix.app }}:latest
-
-      - name: Update kustomization.yaml
-        run: |
-          sed -i "s|newTag: .*|newTag: ${TAG}|" app-deployment/${{ matrix.app }}/kustomization.yaml
-          git config --global user.name 'github-actions'
-          git config --global user.email 'actions@github.com'
-          git add app-deployment/${{ matrix.app }}/kustomization.yaml
-          git commit -m "Update kustomization.yaml for ${matrix.app} to new tag ${TAG}"
-          git push
+          IFS=',' read -ra APPS <<< "${{ github.event.inputs.changed_apps }}"
+          for app in "${APPS[@]}"; do
+            docker build -t surawatprem/${app}:${{ env.TAG }} ./microservices/${app}
+            docker push surawatprem/${app}:${{ env.TAG }}
+            sed -i "s|newTag: .*|newTag: ${TAG}|" ./app-deployment/${app}/kustomization.yaml
+            git config --global user.name 'github-actions'
+            git config --global user.email 'actions@github.com'
+            git add ./app-deployment/${app}/kustomization.yaml
+            git commit -m "Update kustomization.yaml for ${app} to new tag ${TAG}"
+            git push
+          done

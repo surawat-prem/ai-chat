@@ -1,0 +1,42 @@
+name: Check for Changes
+
+on:
+  push:
+    branches:
+      - non-prod
+    paths:
+      - 'microservices/**'
+  workflow_dispatch:
+
+jobs:
+  detect-changes:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Check for changes
+        id: changes
+        run: |
+          CHANGED_APPS=""
+          for dir in microservices/*; do
+            if [[ -d "$dir" ]]; then
+              app_name=$(basename "$dir")
+              if git diff --name-only HEAD^ HEAD | grep -q "^$dir/"; then
+                CHANGED_APPS="${CHANGED_APPS}${app_name},"
+              fi
+            fi
+          done
+          # Remove trailing comma
+          CHANGED_APPS=${CHANGED_APPS%,}
+          echo "CHANGED_APPS=${CHANGED_APPS}" >> $GITHUB_ENV
+
+      - name: Trigger Build Workflow
+        if: env.CHANGED_APPS != ''
+        uses: peter-evans/workflow-dispatch@v1
+        with:
+          workflow: docker-build.yaml.yml # Name of the build workflow
+          ref: non-prod
+          inputs: 
+            changed_apps: ${{ env.CHANGED_APPS }}
