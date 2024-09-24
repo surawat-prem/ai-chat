@@ -9,3 +9,5 @@ configMapGenerator:
   - name: chat-server
     envs:
       - .env
+images:
+  - newTag: v1
