@@ -13,13 +13,13 @@ module "aws-vpc" {
   aws_vpcs = var.aws_vpcs
 }
 
-module "aws-subnet-workload" {
-  source = "../modules/aws_subnet"
-  vpc_id = module.aws-vpc.vpc_id["vpc_workload"]
-  aws_subnets = var.aws_subnets_workload
+# module "aws-subnet-workload" {
+#   source = "../modules/aws_subnet"
+#   vpc_id = module.aws-vpc.vpc_id["vpc_workload"]
+#   aws_subnets = var.aws_subnets_workload
 
-  depends_on = [ module.aws-vpc ]
-}
+#   depends_on = [ module.aws-vpc ]
+# }
 
 module "aws-subnet-controller" {
   source = "../modules/aws_subnet"
@@ -29,10 +29,10 @@ module "aws-subnet-controller" {
   depends_on = [ module.aws-vpc ]
 }
 
-module "aws-utility-network-interface" {
-  source = "../modules/aws_subnet_network_interface"
-  subnet_id = module.aws-subnet-workload.subnet_id["k8s-utility-1"]
-}
+# module "aws-utility-network-interface" {
+#   source = "../modules/aws_subnet_network_interface"
+#   subnet_id = module.aws-subnet-workload.subnet_id["k8s-utility-1"]
+# }
 
 module "aws-route-table-subnet-controller" {
   source = "../modules/aws_route_table"

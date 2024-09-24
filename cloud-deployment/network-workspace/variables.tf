@@ -41,53 +41,53 @@ variable "aws_route_table_subnet_controller_tags" {
 }
 
 # SUBNET WORKLOAD
-variable "aws_subnets_workload" {
-    type = map(object({
-      cidr_block = string
-      availability_zone = string
-      map_public_ip_on_launch = bool
-      aws_subnet_tag = map(string)
-    }))
+# variable "aws_subnets_workload" {
+#     type = map(object({
+#       cidr_block = string
+#       availability_zone = string
+#       map_public_ip_on_launch = bool
+#       aws_subnet_tag = map(string)
+#     }))
 
-    default = {
-      k8s-non-prod-1 = {
-        "cidr_block" = "10.0.64.0/20"
-        "availability_zone" = "ap-southeast-1a"
-        "map_public_ip_on_launch" = false
-        "aws_subnet_tag" = {
-          Name = "k8s-non-prod-1"
-          SubnetType = "Private"
-        }
-      },
-      k8s-non-prod-2 = {
-        "cidr_block" = "10.0.80.0/20"
-        "availability_zone" = "ap-southeast-1b"
-        "map_public_ip_on_launch" = false
-        "aws_subnet_tag" = {
-          Name = "k8s-non-prod-2"
-          SubnetType = "Private"
-        }
-      },
-      k8s-non-prod-3 = {
-        "cidr_block" = "10.0.96.0/20"
-        "availability_zone" = "ap-southeast-1c"
-        "map_public_ip_on_launch" = false
-        "aws_subnet_tag" = {
-          Name = "k8s-non-prod-3"
-          SubnetType = "Private"
-        }
-      },
-      k8s-utility-1 = {
-        "cidr_block" = "10.0.112.0/20"
-        "availability_zone" = "ap-southeast-1a"
-        "map_public_ip_on_launch" = true
-        "aws_subnet_tag" = {
-          Name = "k8s-utility-1"
-          SubnetType = "Public"
-        }
-      }
-    }
-}
+#     default = {
+#       k8s-non-prod-1 = {
+#         "cidr_block" = "10.0.64.0/20"
+#         "availability_zone" = "ap-southeast-1a"
+#         "map_public_ip_on_launch" = false
+#         "aws_subnet_tag" = {
+#           Name = "k8s-non-prod-1"
+#           SubnetType = "Private"
+#         }
+#       },
+#       k8s-non-prod-2 = {
+#         "cidr_block" = "10.0.80.0/20"
+#         "availability_zone" = "ap-southeast-1b"
+#         "map_public_ip_on_launch" = false
+#         "aws_subnet_tag" = {
+#           Name = "k8s-non-prod-2"
+#           SubnetType = "Private"
+#         }
+#       },
+#       k8s-non-prod-3 = {
+#         "cidr_block" = "10.0.96.0/20"
+#         "availability_zone" = "ap-southeast-1c"
+#         "map_public_ip_on_launch" = false
+#         "aws_subnet_tag" = {
+#           Name = "k8s-non-prod-3"
+#           SubnetType = "Private"
+#         }
+#       },
+#       k8s-utility-1 = {
+#         "cidr_block" = "10.0.112.0/20"
+#         "availability_zone" = "ap-southeast-1a"
+#         "map_public_ip_on_launch" = true
+#         "aws_subnet_tag" = {
+#           Name = "k8s-utility-1"
+#           SubnetType = "Public"
+#         }
+#       }
+#     }
+# }
 
 # SUBNET CONTROLLER
 variable "aws_subnets_controller" {
