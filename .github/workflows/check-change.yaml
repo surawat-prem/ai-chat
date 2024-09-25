@@ -1,42 +1,61 @@
-name: Check for Changes
+name: Build and Deploy Microservices
 
 on:
   push:
-    branches:
-      - non-prod
     paths:
       - 'microservices/**'
-  workflow_dispatch:
+    branches:
+      - 'non-prod'
 
 jobs:
-  detect-changes:
+  build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Check for changes
-        id: changes
-        run: |
-          CHANGED_APPS=""
-          for dir in microservices/*; do
-            if [[ -d "$dir" ]]; then
-              app_name=$(basename "$dir")
-              if git diff --name-only HEAD^ HEAD | grep -q "^$dir/"; then
-                CHANGED_APPS="${CHANGED_APPS}${app_name},"
-              fi
-            fi
-          done
-          # Remove trailing comma
-          CHANGED_APPS=${CHANGED_APPS%,}
-          echo "CHANGED_APPS=${CHANGED_APPS}" >> $GITHUB_ENV
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'  # Specify your Python version
 
-      - name: Trigger Build Workflow
-        if: env.CHANGED_APPS != ''
+      - name: Determine changed services
+        id: services
+        run: |
+          changed_files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} -- microservices/)
+          echo "Changed files: $changed_files"
+
+          services=()
+          for file in $changed_files; do
+            case $file in
+              microservices/chat-fe/*)
+                services+=("chat-fe")
+                ;;
+              microservices/chat-server/*)
+                services+=("chat-server")
+                ;;
+              microservices/chat-backend/*)
+                services+=("chat-backend")
+                ;;
+            esac
+          done
+
+          if [ ${#services[@]} -eq 0 ]; then
+            echo "No services changed. Exiting."
+            echo "::set-output name=services::"
+            exit 0
+          else
+            echo "Changed services: ${services[@]}"
+            # Join the services array into a single string
+            services_string=$(IFS=','; echo "${services[*]}")
+            echo "::set-output name=services::${services_string}"
+          fi
+
+      - name: Trigger Build and Deploy
+        if: steps.services.outputs.services != ''
         uses: peter-evans/workflow-dispatch@v1
         with:
-          workflow: docker-build.yaml.yml # Name of the build workflow
-          ref: non-prod
+          workflow: build-and-deploy.yml
+          ref: non-prod  # Change to your default branch
           inputs: 
-            changed_apps: ${{ env.CHANGED_APPS }}
+            services: ${{ steps.services.outputs.services }}
