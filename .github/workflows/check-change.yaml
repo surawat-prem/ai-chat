@@ -23,6 +23,7 @@ jobs:
           # Get the list of changed microservices
           CHANGED_SERVICES=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} -- microservice/** | cut -d '/' -f 1 | uniq)
           echo "::set-output name=services::$CHANGED_SERVICES"
+          echo "$CHANGED_SERVICES"
 
       - name: Dispatch workflows for changed microservices
         if: steps.changes.outputs.services != ''
