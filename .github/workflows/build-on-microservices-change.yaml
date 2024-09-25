@@ -74,8 +74,8 @@ jobs:
 
           echo "Listing app-deployment contents:"
           ls -la ./app-deployment/${{ matrix.service }}/
-          
-          sed -i '' "s|newTag: .*|newTag: ${{ needs.create-common-tag.outputs.dockerTag }}|" ./app-deployment/${{ matrix.service }}/kustomization.yaml
+
+          sed -i "s|newTag: .*|newTag: ${{ needs.create-common-tag.outputs.dockerTag }}|" ./app-deployment/${{ matrix.service }}/kustomization.yaml
 
   commit-and-push:
     needs: build-and-push
