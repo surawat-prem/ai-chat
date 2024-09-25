@@ -77,6 +77,10 @@ jobs:
 
           sed -i "s|newTag: .*|newTag: ${{ needs.create-common-tag.outputs.dockerTag }}|" ./app-deployment/${{ matrix.service }}/kustomization.yaml
 
+          echo "Collecting changes for ${{ matrix.service }}"
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+
   commit-and-push:
     needs: build-and-push
     runs-on: ubuntu-latest
