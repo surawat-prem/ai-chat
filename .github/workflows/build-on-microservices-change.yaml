@@ -85,7 +85,8 @@ jobs:
 
       - name: Commit changes
         run: |
-          for service in ${{ needs.check-service-changes.outputs.services }}; do
+          services='${{ fromJson(needs.check-service-changes.outputs.services) }}'
+          for service in $services; do
             sed -i "s|newTag: .*|newTag: ${{ needs.create-common-tag.outputs.dockerTag }}|" ./app-deployment/$service/kustomization.yaml
           done
 
