@@ -69,25 +69,12 @@ jobs:
           docker build --platform=linux/amd64 -t surawatprem/${{ matrix.service }}:${{ needs.create-common-tag.outputs.dockerTag }} ./microservices/${{ matrix.service }}/
           docker push surawatprem/${{ matrix.service }}:${{ needs.create-common-tag.outputs.dockerTag }}
 
-          echo "Current working directory:"
-          pwd
-
-          echo "Listing app-deployment contents:"
-          ls -la ./app-deployment/${{ matrix.service }}/
-
-          sed -i "s|newTag: .*|newTag: ${{ needs.create-common-tag.outputs.dockerTag }}|" ./app-deployment/${{ matrix.service }}/kustomization.yaml
-
-      - name: Upload changes
-        uses: actions/upload-artifact@v3
-        with:
-          name: repo-changes
-          path: ./app-deployment/${{ matrix.service }}/kustomization.yaml
-
   commit-and-push:
     needs: 
       - check-service-changes
       - build-and-push
       - create-common-tag
+    if: needs.check-service-changes.outputs.services != ''
     runs-on: ubuntu-latest
 
     steps:
@@ -103,6 +90,10 @@ jobs:
 
       - name: Commit changes
         run: |
+          for service in ${{ needs.check-service-changes.outputs.services }}; do
+            sed -i "s|newTag: .*|newTag: ${{ needs.create-common-tag.outputs.dockerTag }}|" ./app-deployment/$service/kustomization.yaml
+          done
+
           git config user.name "GitHub Action"
           git config user.email "action@github.com"
           git add ./app-deployment/**
