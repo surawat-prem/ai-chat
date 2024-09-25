@@ -10,4 +10,4 @@ configMapGenerator:
     envs:
       - .env
 images:
-  - newTag: v1
+  - newTag: 20240925-192
