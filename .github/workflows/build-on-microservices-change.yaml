@@ -85,7 +85,7 @@ jobs:
 
       - name: Commit changes
         run: |
-          echo '${{ needs.check-service-changes.outputs.services }}' | jq -c '.[]' | while read service; do
+          echo '${{ needs.check-service-changes.outputs.services }}' | jq -r '.[]' | while read service; do
             sed -i "s|newTag: .*|newTag: ${{ needs.create-common-tag.outputs.dockerTag }}|" ./app-deployment/$service/kustomization.yaml
           done
 
