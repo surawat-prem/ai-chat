@@ -1,10 +1,10 @@
-name: Build and Deploy Microservices
+name: Build and Deploy Workflow
 
 on:
   workflow_dispatch:
     inputs:
-      services:
-        description: 'List of changed services'
+      service:
+        description: 'Microservice name'
         required: true
         default: ''
 
