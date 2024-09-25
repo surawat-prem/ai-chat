@@ -5,7 +5,7 @@ on:
     branches:
       - non-prod
     paths:
-      - 'microservices/*'
+      - 'microservices/**'
   # pull_request:
   #   branches:
   #     - non-prod
