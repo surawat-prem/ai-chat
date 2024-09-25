@@ -22,9 +22,9 @@ jobs:
         id: services
         with:
             filters: |
-              chat-backend: microservices/chat-backend
-              chat-fe: microservices/chat-fe
-              chat-server: microservices/chat-server
+              chat-backend: microservices/chat-backend/**
+              chat-fe: microservices/chat-fe/**
+              chat-server: microservices/chat-server/**
 
   create-common-tag:
     needs: check-service-changes
