@@ -83,11 +83,6 @@ jobs:
         with:
           ref: 'non-prod'
 
-      - name: Download changes
-        uses: actions/download-artifact@v3
-        with:
-            name: repo-changes
-
       - name: Commit changes
         run: |
           for service in ${{ needs.check-service-changes.outputs.services }}; do
