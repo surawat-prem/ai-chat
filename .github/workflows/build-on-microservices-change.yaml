@@ -81,6 +81,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: repo-changes
+          path: ./app-deployment/${{ matrix.service }}/kustomization.yaml
 
   commit-and-push:
     needs: 
