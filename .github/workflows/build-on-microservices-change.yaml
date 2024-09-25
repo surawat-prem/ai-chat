@@ -77,12 +77,16 @@ jobs:
 
           sed -i "s|newTag: .*|newTag: ${{ needs.create-common-tag.outputs.dockerTag }}|" ./app-deployment/${{ matrix.service }}/kustomization.yaml
 
-          echo "Collecting changes for ${{ matrix.service }}"
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
+      - name: Upload changes
+        uses: actions/upload-artifact@v3
+        with:
+          name: repo-changes
 
   commit-and-push:
-    needs: build-and-push
+    needs: 
+      - check-service-changes
+      - build-and-push
+      - create-common-tag
     runs-on: ubuntu-latest
 
     steps:
@@ -91,10 +95,15 @@ jobs:
         with:
           ref: 'non-prod'
 
+      - name: Download changes
+        uses: actions/download-artifact@v3
+        with:
+            name: repo-changes
+
       - name: Commit changes
         run: |
           git config user.name "GitHub Action"
           git config user.email "action@github.com"
           git add ./app-deployment/**
-          git commit -m "Update kustomization.yaml with new tags"
+          git commit -m "Update kustomization.yaml with new tag : ${{ needs.create-common-tag.outputs.dockerTag }}"
           git push origin non-prod
