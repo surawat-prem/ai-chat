@@ -1,0 +1,83 @@
+name: Build on Microservices Change
+
+on:
+  push:
+    branches:
+      - non-prod
+    paths:
+      - 'microservices/**'
+
+jobs:
+  check-service-changes:
+    runs-on: ubuntu-latest
+    
+    outputs:
+      services: ${{ steps.services.outputs.changes }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - uses: dorny/paths-filter@v3
+        id: services
+        with:
+            filters: |
+              chat-backend: microservices/chat-backend
+              chat-fe: microservices/chat-fe
+              chat-server: microservices/chat-server
+
+  create-common-tag:
+    needs: check-service-changes
+    runs-on: ubuntu-latest
+    if: needs.check-service-changes.outputs.services != ''
+    outputs:
+      dockerTag: ${{ steps.set-tag.outputs.tag }}
+    steps:
+      - id: set-tag
+        run: |
+          DATE=$(date +'%Y%m%d')
+          RANDOM_NUMBER=$(( RANDOM % 1000 ))
+          TAG="${DATE}-${RANDOM_NUMBER}"
+          echo "TAG=${TAG}" >> $GITHUB_ENV
+          echo "::set-output name=tag::${TAG}"
+
+  build-and-push:
+    needs: 
+      - check-service-changes
+      - create-common-tag
+    if: needs.check-service-changes.outputs.services != ''
+    strategy:
+        matrix:
+          service: ${{ fromJson(needs.check-service-changes.outputs.services) }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build Docker images
+        run: |
+          docker build --platform=linux/amd64 -t surawatprem/${{ matrix.service }}:${{ needs.create-common-tag.outputs.dockerTag }} ./microservices/${{ matrix.service }}/
+          docker push surawatprem/${{ matrix.service }}:${{ needs.create-common-tag.outputs.dockerTag }}
+          sed -i "s|newTag: .*|newTag: ${{ needs.create-common-tag.outputs.dockerTag }}|" ./app-deployment/${{ matrix.service }}/kustomization.yaml
+
+  commit-and-push:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Commit changes
+        run: |
+          git config user.name "GitHub Action"
+          git config user.email "action@github.com"
+          git add ./app-deployment/**  # Adjust the path if necessary
+          git commit -m "Update kustomization.yaml with new tags"
+          git push origin main  # Specify the branch as needed
