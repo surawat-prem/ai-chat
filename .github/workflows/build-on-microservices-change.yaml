@@ -68,6 +68,13 @@ jobs:
         run: |
           docker build --platform=linux/amd64 -t surawatprem/${{ matrix.service }}:${{ needs.create-common-tag.outputs.dockerTag }} ./microservices/${{ matrix.service }}/
           docker push surawatprem/${{ matrix.service }}:${{ needs.create-common-tag.outputs.dockerTag }}
+
+          echo "Current working directory:"
+          pwd
+
+          echo "Listing app-deployment contents:"
+          ls -la ./app-deployment/${{ matrix.service }}/
+          
           sed -i '' "s|newTag: .*|newTag: ${{ needs.create-common-tag.outputs.dockerTag }}|" ./app-deployment/${{ matrix.service }}/kustomization.yaml
 
   commit-and-push:
