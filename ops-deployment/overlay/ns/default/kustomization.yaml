@@ -1,0 +1,12 @@
+resources:
+  - ../../../base/ns
+
+patchesJson6902:
+- target:
+    version: v1
+    kind: Namespace
+    name: default
+  patch: |-
+    - op: replace
+      path: /metadata/name
+      value: "default"
