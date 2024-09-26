@@ -1,7 +1,12 @@
 resources:
   - ../../../base/ns
-patches:
-- patch: |-
-    - op: replace
-      path: /metadata/name
-      value: app
+
+patchesJson6902:
+  - target:
+      group: v1
+      kind: Namespace
+      name: default
+    patch: |
+      - op: replace
+        path: /metadata/name
+        value: app
