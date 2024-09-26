@@ -1,0 +1,104 @@
+crds:
+  install: true
+
+global:
+  nodeSelector: {}
+  tolerations: []
+  topologySpreadConstraints: []
+
+config:
+  cm:
+    create: true
+    application.instanceLabelKey: argocd.argoproj.io/instance
+    admin.enabled: true
+    statusbadge.enabled: true
+
+  tls:
+    annotations: {}
+    certificatse: {}
+
+  secret:
+    createSecret: true
+
+controller:
+  replicas: 1
+  envFrom: []
+  resources: {}
+  #  limits:
+  #    cpu: 500m
+  #    memory: 512Mi
+  #  requests:
+  #    cpu: 250m
+  #    memory: 256Mi
+  nodeSelector: {}
+  tolerations: []
+  topologySpreadConstraints: []
+  metrics:
+    enabled: false
+
+dex:
+  enabled: false
+
+redis:
+  enabled: true
+  exporter:
+    enabled: false
+  
+redis-ha:
+  enabled: false
+
+externalRedis:
+  host: ""
+  username: ""
+  # -- The name of an existing secret with Redis (must contain key `redis-password`) and Sentinel credentials.
+  # When it's set, the `externalRedis.password` parameter is ignored
+  existingSecret: ""
+
+server:
+  replicas: 1
+  autoscaling:
+    enabled: false
+    minReplicas: 1
+    maxReplicas: 3
+  resources: {}
+  #  limits:
+  #    cpu: 100m
+  #    memory: 128Mi
+  #  requests:
+  #    cpu: 50m
+  #    memory: 64Mi
+
+repoServer:
+  replicas: 1
+  autoscaling:
+    enabled: false
+    minReplicas: 1
+    maxReplicas: 3
+  resources: {}
+  #  limits:
+  #    cpu: 50m
+  #    memory: 128Mi
+  #  requests:
+  #    cpu: 10m
+  #    memory: 64Mi
+  envFrom: []
+  # - secretRef:
+  #     name: my-argocd-reposerver
+
+applicationSet:
+  replicas: 1
+  resources: {}
+    # limits:
+    #   cpu: 100m
+    #   memory: 128Mi
+    # requests:
+    #   cpu: 100m
+    #   memory: 128Mi
+
+notifications:
+  enabled: true
+  secret:
+    create: false
+  notifiers:
+    service.slack: |
+      token: $slack-token

@@ -1,0 +1,7 @@
+bases:
+  - ../../../base/ns
+patches:
+- patch: |-
+    - op: replace
+      path: /metadata/name
+      value: app
