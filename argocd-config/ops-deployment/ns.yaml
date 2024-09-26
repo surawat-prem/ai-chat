@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: apps
+  name: ops
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
@@ -11,6 +11,6 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: argocd-config/ops-deployment/overlay/ns/kustomization.yaml
+    path: argocd-config/ops-deployment/overlay/ns
     repoURL: https://github.com/surawat-prem/ai-chat
     targetRevision: non-prod
