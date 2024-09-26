@@ -11,7 +11,7 @@ spec:
   destination:
     namespace: argocd
     server: https://kubernetes.default.svc
-  project: default
+  project: ops
   source:
     path: argocd-config/ops-deployment
     repoURL: https://github.com/surawat-prem/ai-chat

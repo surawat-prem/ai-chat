@@ -1,2 +1,11 @@
 resources:
   - chat-backend.yaml
+
+patchesJson6902:
+- target:
+    version: argoproj.io/v1alpha1
+    kind: Application
+  patch: |-
+    - op: add
+      path: /spec/project
+      value: "apps"
