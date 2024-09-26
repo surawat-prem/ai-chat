@@ -1,3 +1,4 @@
 resources:
-  # - apps.yaml
+  - apps.yaml
   - ops.yaml
+  - projects.yaml
