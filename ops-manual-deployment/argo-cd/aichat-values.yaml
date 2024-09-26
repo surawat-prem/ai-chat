@@ -98,6 +98,7 @@ notifications:
   enabled: true
   secret:
     create: false
+    name: slack-notification-secret
   notifiers:
     service.slack: |
       token: $slack-token
