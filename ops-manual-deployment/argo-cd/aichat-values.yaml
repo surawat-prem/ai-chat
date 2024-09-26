@@ -6,7 +6,6 @@ global:
   tolerations: []
   topologySpreadConstraints: []
 
-config:
   cm:
     create: true
     application.instanceLabelKey: argocd.argoproj.io/instance

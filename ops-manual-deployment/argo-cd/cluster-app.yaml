@@ -11,6 +11,15 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: argocd-config/cluster-app/kustomization.yaml
+    path: argocd-config/cluster-app
     repoURL: https://github.com/surawat-prem/ai-chat
     targetRevision: non-prod
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: default
+  namespace: argocd
+  # Finalizer that ensures that project is not deleted until it is not referenced by any application
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io

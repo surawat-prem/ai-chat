@@ -11,6 +11,6 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: argocd-config/apps-deployment/kustomization.yaml
+    path: argocd-config/apps-deployment
     repoURL: https://github.com/surawat-prem/ai-chat
     targetRevision: non-prod
