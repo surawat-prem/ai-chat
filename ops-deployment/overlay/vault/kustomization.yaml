@@ -1,5 +1,5 @@
 helmGlobals:
-  chartHome: ../../base/vault/charts/vault
+  chartHome: ../../base/vault/charts
 
 helmCharts:
   - releaseName: vault
@@ -7,4 +7,4 @@ helmCharts:
     name: vault
     includeCRDs: true
     valuesFile: ./values.yaml
-    repo: https://github.com/surawat-prem/ai-chat/ops-deployment/base/vault/charts
+    repo: ""
