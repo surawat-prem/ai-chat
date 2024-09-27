@@ -24,7 +24,7 @@ resource "aws_iam_policy" "vault-kms-policy" {
   name        = "VaultKMSAccess"
   description = "Policy to allow Vault to access the KMS key"
 
-  policy = data.aws_iam_policy_document.vaukt-policy-data
+  policy = data.aws_iam_policy_document.vaukt-policy-data.json
 }
 
 resource "aws_iam_user" "vault-user" {
