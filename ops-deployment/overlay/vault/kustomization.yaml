@@ -4,4 +4,4 @@ helmCharts:
     name: vault
     includeCRDs: true
     valuesFile: ./values.yaml
-    repo: https://github.com/surawat-prem/ai-chat/ops-deployment/base/vault
+    repo: https://github.com/surawat-prem/ai-chat/ops-deployment/base/vault/charts
