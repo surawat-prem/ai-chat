@@ -1,0 +1,39 @@
+global:
+  enalbed: true
+
+server:
+  resources: {}
+  # resources:
+  #   requests:
+  #     memory: 256Mi
+  #     cpu: 250m
+  #   limits:
+  #     memory: 256Mi
+  #     cpu: 250m
+  extraSecretEnvironmentVars:
+    - envName: AWS_ACCESS_KEY_ID
+      secretName: vault-aws-kms-user
+      secretKey: AWS_ACCESS_KEY_ID
+    - envName: AWS_SECRET_ACCESS_KEY
+      secretName: vault-aws-kms-user
+      secretKey: AWS_SECRET_ACCESS_KEY
+  dataStorage:
+    enabled: true
+    size: 5Gi
+    storageClass: default
+  auditStorage:
+    enabled: true
+    size: 5Gi
+    storageClass: default
+  ha:
+    emabled: flase
+    replicas: 3
+    raft:
+      enabled: false
+
+ui:
+  enabled: true
+
+csi:
+  enabled: false
+
