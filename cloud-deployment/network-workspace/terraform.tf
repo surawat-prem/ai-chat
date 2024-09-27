@@ -6,4 +6,10 @@ terraform {
           version = "5.66.0"
         }
     }
+  backend "remote" {
+    organization = "chat-system-infra"
+    workspaces {
+      name = "network"
+    }
+  }
 }
