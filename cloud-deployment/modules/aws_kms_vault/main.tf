@@ -16,7 +16,7 @@ data "aws_iam_policy_document" "vaukt-policy-data" {
       "kms:GenerateDataKey",
       "kms:GenerateDataKeyWithoutPlaintext"
     ]
-    resources = aws_kms_key.vault.arn
+    resources = [aws_kms_key.vault.arn]
   }
 }
 
