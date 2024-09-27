@@ -6,7 +6,7 @@ variable "AWS_DEFAULT_REGION" {
 variable "aws_vpcs" {
     type = map(object({
       cidr_block = string
-      enable_dns_suuport = bool
+      enable_dns_support = bool
       enable_dns_hostnames = bool
       aws_vpc_tag = map(string)
     }))
@@ -14,7 +14,7 @@ variable "aws_vpcs" {
     default = {
       vpc_workload = {
         "cidr_block" = "10.0.64.0/18"
-        "enable_dns_suuport" = true
+        "enable_dns_support" = true
         "enable_dns_hostnames" = true
         "aws_vpc_tag" = {
           Name = "workload"
@@ -22,7 +22,7 @@ variable "aws_vpcs" {
       },
       vpc_controller = {
         "cidr_block" = "172.16.0.0/22"
-        "enable_dns_suuport" = true
+        "enable_dns_support" = true
         "enable_dns_hostnames" = true
         "aws_vpc_tag" = {
           Name = "controller"
