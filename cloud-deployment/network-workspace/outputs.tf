@@ -24,8 +24,8 @@ output "kms_key_id" {
   value = module.aws-vault-kms.kms_key_id
 }
 
-output "vault_user_access_key" {
-  value = module.aws-vault-kms.vault_user_access_key
+output "vault_user_access_key_id" {
+  value = module.aws-vault-kms.vault_user_access_key_id
   sensitive = true
 }
 
