@@ -12,6 +12,7 @@ resource "aws_iam_policy" "vault-kms-policy" {
   description = "Policy to allow Vault to access the KMS key"
 
   policy = jsonencode({
+    Version = "2024-09-27"
     Statement = [
       {
         Effect = "Allow"
