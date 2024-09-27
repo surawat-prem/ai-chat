@@ -65,3 +65,7 @@ module "aws-s3-kops" {
   aws_s3_bucket_ignore_public_acls = var.kops_aws_bucket_ignore_public_acls
   aws_s3_bucket_restrict_public_buckets = var.kops_aws_bucket_restrict_public_buckets
 }
+
+module "aws-vault-kms" {
+  source = "../modules/aws_kms_vault"
+}
