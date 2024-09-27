@@ -23,7 +23,7 @@ resource "aws_iam_policy" "vault-kms-policy" {
           "kms:GenerateDataKeyWithoutPlaintext",
         ]
         Resource = aws_kms_key.vault.arn
-      }
+      },
     ]
   })
 }
