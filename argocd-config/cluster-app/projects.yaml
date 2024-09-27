@@ -7,6 +7,8 @@ metadata:
   # Finalizer that ensures that project is not deleted until it is not referenced by any application
   finalizers:
     - resources-finalizer.argocd.argoproj.io
+  annotations:
+    notifications.argoproj.io/subscribe.on-deployed.slack: argocd-aichat-slack-bot
 spec:
   description: Argocd Project for deploying argocd crds
   # Allow manifests to deploy from any Git repos
@@ -31,6 +33,8 @@ metadata:
   # Finalizer that ensures that project is not deleted until it is not referenced by any application
   finalizers:
     - resources-finalizer.argocd.argoproj.io
+  annotations:
+    notifications.argoproj.io/subscribe.on-deployed.slack: argocd-aichat-slack-bot
 spec:
   description: Argocd Project for deploying argocd crds
   # Allow manifests to deploy from any Git repos
