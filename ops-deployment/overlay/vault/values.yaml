@@ -20,11 +20,11 @@ server:
   dataStorage:
     enabled: true
     size: 5Gi
-    storageClass: default
+    storageClass: standard
   auditStorage:
     enabled: true
     size: 5Gi
-    storageClass: default
+    storageClass: standard
   ha:
     emabled: flase
     replicas: 3
