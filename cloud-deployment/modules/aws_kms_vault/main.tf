@@ -14,7 +14,8 @@ data "aws_iam_policy_document" "vaukt-policy-data" {
       "kms:Encrypt",
       "kms:Decrypt",
       "kms:GenerateDataKey",
-      "kms:GenerateDataKeyWithoutPlaintext"
+      "kms:GenerateDataKeyWithoutPlaintext",
+      "kms:DescribeKey"
     ]
     resources = [aws_kms_key.vault.arn]
   }
