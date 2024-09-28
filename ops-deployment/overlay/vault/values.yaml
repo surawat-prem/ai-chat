@@ -27,6 +27,9 @@ server:
     config: |
       seal "awskms" {
       }
+      storage "file" {
+        path = "/vault/data"
+      }
   dataStorage:
     enabled: true
     size: 5Gi
