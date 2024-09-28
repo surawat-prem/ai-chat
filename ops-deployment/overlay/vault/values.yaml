@@ -11,6 +11,12 @@ server:
   #     memory: 256Mi
   #     cpu: 250m
   extraSecretEnvironmentVars:
+    - envName: AWS_REGION
+      secretName: vault-aws-kms-user
+      secretKey: AWS_REGION
+    - envName: AWS_KEY_ID
+      secretName: vault-aws-kms-user
+      secretKey: AWS_KEY_ID
     - envName: AWS_ACCESS_KEY_ID
       secretName: vault-aws-kms-user
       secretKey: AWS_ACCESS_KEY_ID
