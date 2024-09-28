@@ -17,6 +17,14 @@ server:
     - envName: AWS_SECRET_ACCESS_KEY
       secretName: vault-aws-kms-user
       secretKey: AWS_SECRET_ACCESS_KEY
+  standalone:
+    config: |
+      seal "awskms" {
+      region     = $(AWS_REGION)
+      access_key = $(AWS_ACCESS_KEY_ID)
+      secret_key = $(AWS_SECRET_ACCESS_KEY)
+      kms_key_id = $(AWS_KEY_ID)
+      }
   dataStorage:
     enabled: true
     size: 5Gi
