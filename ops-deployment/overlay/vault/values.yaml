@@ -26,10 +26,10 @@ server:
   standalone:
     config: |
       seal "awskms" {
-      region     = $AWS_REGION
-      access_key = $AWS_ACCESS_KEY_ID
-      secret_key = $AWS_SECRET_ACCESS_KEY
-      kms_key_id = $AWS_KEY_ID
+      region     = ${AWS_REGION}
+      access_key = ${AWS_ACCESS_KEY_ID}
+      secret_key = ${AWS_SECRET_ACCESS_KEY}
+      kms_key_id = ${AWS_KEY_ID}
       }
   dataStorage:
     enabled: true
