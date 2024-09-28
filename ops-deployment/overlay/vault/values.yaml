@@ -38,11 +38,18 @@ server:
     raft:
       enabled: true
     config: |
-      seal "awskms" {
+      ui = true
+      listener "tcp" {
+        tls_disable = 1
+        address = "[::]:8200"
+        cluster_address = "[::]:8201"
       }
-      storage "raft"{
+      storage "raft" {
         path = "/vault/data"
       }
+      seal "awskms" {
+      }
+
 
 ui:
   enabled: true
