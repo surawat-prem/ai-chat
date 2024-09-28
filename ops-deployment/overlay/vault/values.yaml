@@ -24,6 +24,9 @@ server:
       secretName: vault-aws-kms-user
       secretKey: AWS_SECRET_ACCESS_KEY
 
+  standalone:
+    enabled: false
+
   dataStorage:
     enabled: true
     size: 5Gi
