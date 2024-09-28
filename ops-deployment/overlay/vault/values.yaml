@@ -1,8 +1,12 @@
 global:
-  enalbed: false
+  enalbed: "false"
+
+injector:
+  enabled: "true"
+  replicas: 1
 
 server:
-  enabled: true
+  enabled: "true"
   resources: {}
   # resources:
   #   requests:
@@ -26,7 +30,7 @@ server:
       secretKey: AWS_SECRET_ACCESS_KEY
 
   standalone:
-    enabled: false
+    enabled: "false"
 
   dataStorage:
     enabled: true
