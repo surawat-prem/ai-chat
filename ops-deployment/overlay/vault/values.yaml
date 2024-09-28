@@ -14,9 +14,9 @@ server:
     - envName: AWS_REGION
       secretName: vault-aws-kms-user
       secretKey: AWS_REGION
-    - envName: AWS_KEY_ID
+    - envName: VAULT_AWSKMS_SEAL_KEY_ID
       secretName: vault-aws-kms-user
-      secretKey: AWS_KEY_ID
+      secretKey: VAULT_AWSKMS_SEAL_KEY_ID
     - envName: AWS_ACCESS_KEY_ID
       secretName: vault-aws-kms-user
       secretKey: AWS_ACCESS_KEY_ID
@@ -26,10 +26,6 @@ server:
   standalone:
     config: |
       seal "awskms" {
-        region     = ${AWS_REGION}
-        access_key = ${AWS_ACCESS_KEY_ID}
-        secret_key = ${AWS_SECRET_ACCESS_KEY}
-        kms_key_id = ${AWS_KEY_ID}
       }
   dataStorage:
     enabled: true
