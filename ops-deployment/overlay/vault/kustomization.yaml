@@ -1,3 +1,7 @@
+resources:
+  - ./app
+  - ./vso-service-account.yaml
+
 helmGlobals:
   chartHome: ../../base/vault/charts
 
@@ -6,5 +10,11 @@ helmCharts:
     namespace: vault
     name: vault
     includeCRDs: true
-    valuesFile: ./values.yaml
+    valuesFile: ./vault-values.yaml
+    repo: ""
+  - releaseName: vault-secrets-operator
+    namespace: vault
+    name: vault
+    includeCRDs: true
+    valuesFile: ./vault-secrets-operator-values.yaml
     repo: ""

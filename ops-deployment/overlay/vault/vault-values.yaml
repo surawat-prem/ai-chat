@@ -2,8 +2,7 @@ global:
   enalbed: false
 
 injector:
-  enabled: true
-  replicas: 1
+  enabled: false
 
 server:
   enabled: true
