@@ -1,3 +1,4 @@
 resources:
   - ns.yaml
   - vault.yaml
+  - vault-secrets-operator.yaml

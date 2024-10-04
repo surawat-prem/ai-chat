@@ -1,0 +1,10 @@
+helmGlobals:
+  chartHome: ../../../base/vault/charts
+
+helmCharts:
+  - releaseName: vault-secrets-operator-non-prod
+    namespace: app
+    name: vault-secrets-operator
+    includeCRDs: true
+    valuesFile: ./vault-secrets-operator.yaml
+    repo: ""
