@@ -12,9 +12,9 @@ helmCharts:
     includeCRDs: true
     valuesFile: ./vault-values.yaml
     repo: ""
-  # - releaseName: vault-secrets-operator
-  #   namespace: vault
-  #   name: vault
-  #   includeCRDs: true
-  #   valuesFile: ./vault-secrets-operator-values.yaml
-  #   repo: ""
+  - releaseName: vault-secrets-operator
+    namespace: vault
+    name: vault
+    includeCRDs: true
+    valuesFile: ./vault-secrets-operator-values.yaml
+    repo: ""
