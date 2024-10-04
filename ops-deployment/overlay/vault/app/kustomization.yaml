@@ -1,3 +1,0 @@
-resources:
-  - service-account.yaml
-  - vault-auth.yaml
