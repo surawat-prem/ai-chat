@@ -1,5 +1,5 @@
-resources:
-  - ./app
+resources: []
+  # - ./app
   # - ./vso-service-account.yaml
 
 helmGlobals:
