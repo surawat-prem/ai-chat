@@ -17,6 +17,8 @@ kind: PersistentVolumeClaim
 metadata:
   name: kafka-jbod-0
   namespace: kafka
+  annotations:
+    pupose: kafka-jbod-0
 spec:
   storageClassName: standard
   accessModes:
