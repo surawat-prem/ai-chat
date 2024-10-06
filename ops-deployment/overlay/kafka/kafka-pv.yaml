@@ -11,6 +11,7 @@ spec:
     storage: 30Gi
   hostPath:
     path: /data/kafka-pv
+  storageClassName: standard
 # ---
 # apiVersion: v1
 # kind: PersistentVolumeClaim
