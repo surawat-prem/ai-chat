@@ -47,7 +47,7 @@ spec:
         type: persistent-claim
         size: 10Gi
         selector:
-          matchLabels: "type:jbod-0"
+          matchLabels: "purpose:jbod-0"
         deleteClaim: true
   entityOperator:
     topicOperator: {}
