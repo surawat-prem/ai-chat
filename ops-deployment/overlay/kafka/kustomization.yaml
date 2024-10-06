@@ -1,0 +1,15 @@
+resources:
+  - kafka.yaml
+  # - kafka-topics.yaml
+  # - kafka-users.yaml
+
+helmGlobals:
+  chartHome: ../../base/kafka/charts
+
+helmCharts:
+  - releaseName: strimzi-kafka-operator
+    namespace: kafka
+    name: kafka
+    includeCRDs: true
+    valuesFile: ./strimzi-kafka-operator-values.yaml
+    repo: ""
