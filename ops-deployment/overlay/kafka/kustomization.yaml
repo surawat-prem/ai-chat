@@ -9,7 +9,7 @@ helmGlobals:
 helmCharts:
   - releaseName: strimzi-kafka-operator
     namespace: kafka
-    name: kafka
+    name: strimzi-kafka-operator
     includeCRDs: true
     valuesFile: ./strimzi-kafka-operator-values.yaml
     repo: ""
