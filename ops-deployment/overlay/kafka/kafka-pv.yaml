@@ -2,8 +2,6 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: kafka-pv
-  labels:
-    purpose: kafka-jbod
   annotations:
     purpose: kafka-jbod
 spec:
@@ -13,3 +11,19 @@ spec:
     storage: 30Gi
   hostPath:
     path: /data/kafka-pv
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: kafka-jbod-0
+  namespace: kafka
+spec:
+  storageClassName: standard
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+  selector:
+    matchLabels:
+      purpose: kafka
