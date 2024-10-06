@@ -4,7 +4,7 @@ metadata:
   name: jbod0-pv
   namespace: kafka
   labels:
-    purpose: jbod-0
+    type: jbod-0
 spec:
   capacity:
     storage: 10Gi
