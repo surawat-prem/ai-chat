@@ -63,8 +63,10 @@ spec:
       - id: 0
         type: persistent-claim
         size: 10Gi
+        class: standard
         selector:
           purpose: kafka-jbod
+          name: kafka-pv
         deleteClaim: true
   resources:
     requests:
