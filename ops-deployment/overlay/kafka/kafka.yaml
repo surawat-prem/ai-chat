@@ -65,7 +65,7 @@ spec:
         size: 10Gi
         class: standard
         selector:
-          purpose: kafka-jbod-0
+          purpose: kafka-jbod
         deleteClaim: true
   resources:
     requests:
