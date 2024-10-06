@@ -1,5 +1,5 @@
 resources:
-  # - kafka.yaml
+  - kafka.yaml
   - kafka-pvc.yaml
   # - kafka-topics.yaml
   # - kafka-users.yaml
