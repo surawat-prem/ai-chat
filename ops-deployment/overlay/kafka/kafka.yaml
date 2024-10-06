@@ -37,7 +37,6 @@ spec:
       transaction.state.log.min.isr: 1
       default.replication.factor: 1
       min.insync.replicas: 1
-      inter.broker.protocol.version: "3.8"
       # test only
       delete.topic.enable: true
 
