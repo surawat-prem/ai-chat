@@ -40,15 +40,6 @@ spec:
       inter.broker.protocol.version: "3.8"
       # test only
       delete.topic.enable: true
-    storage:
-      type: jbod
-      volumes:
-      - id: 0
-        type: persistent-claim
-        size: 10Gi
-        selector:
-          matchLabels: "purpose:jbod-0"
-        deleteClaim: true
   entityOperator:
     topicOperator: {}
     userOperator: {}
@@ -71,7 +62,9 @@ spec:
       - id: 0
         type: persistent-claim
         size: 10Gi
-        deleteClaim: false
+        selector:
+          matchLabels: "purpose:jbod-0"
+        deleteClaim: true
   resources:
     requests:
       memory: 500Mi
