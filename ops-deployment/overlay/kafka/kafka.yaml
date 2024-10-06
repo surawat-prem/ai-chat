@@ -64,7 +64,7 @@ spec:
         type: persistent-claim
         size: 10Gi
         selector:
-          purpose: kafka-jbod
+          matchLabels: "purpose: kafka-jbod"
         deleteClaim: true
   resources:
     requests:
