@@ -40,6 +40,7 @@ spec:
       inter.broker.protocol.version: "3.8"
       # test only
       delete.topic.enable: true
+
   entityOperator:
     topicOperator: {}
     userOperator: {}
@@ -63,7 +64,7 @@ spec:
         type: persistent-claim
         size: 10Gi
         selector:
-          matchLabels: "purpose:jbod-0"
+          matchLabels: "purpose:kafka-jbod"
         deleteClaim: true
   resources:
     requests:

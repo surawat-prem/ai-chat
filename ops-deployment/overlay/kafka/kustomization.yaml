@@ -1,6 +1,6 @@
 resources:
   - kafka.yaml
-  - kafka-pvc.yaml
+  - kafka-pv.yaml
   # - kafka-topics.yaml
   # - kafka-users.yaml
 
