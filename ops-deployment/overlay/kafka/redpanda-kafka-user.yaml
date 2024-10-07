@@ -25,3 +25,11 @@ spec:
         operations:
           - Read
         host: "*"
+      - resource:
+          type: cluster
+          name: "*"
+          patternType: literal
+        operations:
+          - Read
+          - Describe
+        host: "*"
