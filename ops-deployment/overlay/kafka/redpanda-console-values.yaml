@@ -124,7 +124,7 @@ console:
   config:
     kafka:
       brokers:
-        - http://kafka-kafka-bootstrap.kafka:9092
+        - kafka-kafka-bootstrap.kafka
   # roles:
   # roleBindings:
 
