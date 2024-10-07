@@ -125,18 +125,25 @@ console:
     kafka:
       brokers:
         - kafka-kafka-bootstrap.kafka
+      sasl:
+        enabled: true
+        mechanism: SCRAM-SHA-512
+        username: redpanda-user
   # roles:
   # roleBindings:
 
 # -- Additional environment variables for the Redpanda Console Deployment.
-extraEnv: []
-  # - name: KAFKA_RACKID
-  #   value: "1"
+extraEnv:
+  - name: KAFKA_SASL_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: redpanda-user
+        key: password
 
 # -- Additional environment variables for Redpanda Console mapped from Secret or ConfigMap.
 extraEnvFrom: []
 # - secretRef:
-#     name: kowl-config-secret
+#     name: redpanda-user
 
 # -- Add additional volumes, such as for TLS keys.
 extraVolumes: []
