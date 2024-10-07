@@ -1,2 +1,4 @@
 resources:
   - strimzi-kafka-operator
+  # - kafka-ui
+  - redpanda-console

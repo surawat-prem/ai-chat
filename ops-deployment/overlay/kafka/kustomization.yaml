@@ -14,3 +14,10 @@ helmCharts:
     includeCRDs: true
     valuesFile: ./strimzi-kafka-operator-values.yaml
     repo: ""
+
+  - releaseName: redpanda-console
+    namespace: kafka
+    name: redpanda-console
+    includeCRDs: true
+    valuesFile: ./redpanda-console-values.yaml
+    repo: ""
