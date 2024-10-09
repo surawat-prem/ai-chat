@@ -207,7 +207,7 @@ backups:
 
 pooler:
   # -- Whether to enable PgBouncer
-  enabled: true
+  enabled: false
   # -- PgBouncer type of service to forward traffic to.
   type: rw
   # -- PgBouncer pooling mode
