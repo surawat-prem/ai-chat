@@ -1,8 +1,6 @@
 resources:
   - ../../../base/chat-backend
 
-namespace: non-prod
-
 # configMapGenerator:
 #   - name: chat-backend
 #     envs:
