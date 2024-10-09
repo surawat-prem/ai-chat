@@ -34,7 +34,6 @@ patches:
         path: /metadata/namespace
         value: kafka
   - target:
-  - target:
       kind: KafkaUser
       name: chat-backend-kafka-user
     patch: |-
