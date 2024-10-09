@@ -32,6 +32,8 @@ spec:
         type: nodeport
         tls: false
         # enable nodeport
+        authentication:
+          type: scram-sha-512
         configuration:
           brokers:
             - broker: 0
