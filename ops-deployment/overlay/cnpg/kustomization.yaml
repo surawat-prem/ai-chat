@@ -1,5 +1,5 @@
-# resources:
-#   - cnpg-pv.yaml
+resources:
+  - cnpg-pv.yaml
 
 helmGlobals:
   chartHome: ../../base/cnpg/charts
@@ -12,9 +12,9 @@ helmCharts:
     valuesFile: ./cnpg-operator-values.yaml
     repo: ""
 
-  # - releaseName: cnpg-cluster
-  #   namespace: database
-  #   name: cnpg-cluster
-  #   includeCRDs: true
-  #   valuesFile: ./cnpg-cluster-values.yaml
-  #   repo: ""
+  - releaseName: cnpg-cluster
+    namespace: database
+    name: cnpg-cluster
+    includeCRDs: true
+    valuesFile: ./cnpg-cluster-values.yaml
+    repo: ""
