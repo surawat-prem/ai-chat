@@ -13,6 +13,6 @@ spec:
     server: https://kubernetes.default.svc
   project: apps
   source:
-    path: argocd-config/apps-deployment/overlay/non-prod/kafka-topics/kustomization.yaml
+    path: app-deployment/overlay/non-prod/kafka-topics.yaml
     repoURL: https://github.com/surawat-prem/ai-chat
     targetRevision: non-prod
