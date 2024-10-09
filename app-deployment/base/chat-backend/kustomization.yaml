@@ -1,0 +1,7 @@
+resources:
+  # - deployment.yaml
+  # - service.yaml
+  # - serviceaccount.yaml
+  # - vaultsecret.yaml
+  - kafka-user.yaml
+  # - mirror-secret.yaml

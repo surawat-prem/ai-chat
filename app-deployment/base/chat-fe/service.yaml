@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: chat-backend
-  namespace: app
+  name: chat-fe
+  namespace: $NAMESPACE
 spec:
   selector:
-    app: chat-backend
+    app: chat-fe
   type: ClusterIP
   ports:
-  - name: chat-backend
+  - name: chat-fe
     protocol: TCP
     port: 80
     targetPort: 80

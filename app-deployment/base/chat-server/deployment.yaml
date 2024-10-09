@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: chat-fe
-  namespace: app
+  name: chat-server
+  namespace: $NAMESPACE
   labels:
-    app: chat-fe
+    app: chat-server
 spec:
   strategy:
     rollingUpdate:
@@ -14,16 +14,16 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: chat-fe
+      app: chat-server
   template:
     metadata:
       labels:
-        app: chat-fe
+        app: chat-server
     spec:
-      serviceAccountName: chat-fe
+      serviceAccountName: chat-server
       containers:
-      - image: surawatprem/chat-fe:v1
-        name: chat-fe
+      - image: surawatprem/chat-server:v1
+        name: chat-server
         resources:
           requests:
             cpu: "50m"
@@ -33,11 +33,11 @@ spec:
             memory: "150M"
         envFrom:
         - configMapRef:
-            name: chat-fe
+            name: chat-server
         env: []
         ports:
         - containerPort: 80
-          name: chat-fe
+          name: chat-server
         volumeMounts: []
       volumes: []
       restartPolicy: Always

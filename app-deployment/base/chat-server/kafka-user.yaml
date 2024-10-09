@@ -1,0 +1,33 @@
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaUser
+metadata:
+  name: chat-server-kafka-user
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: kafka
+spec:
+  authentication:
+    type: scram-sha-512
+  authorization:
+    type: simple
+    acls:
+      - resource:
+          type: topic
+          name: chat-request
+          patternType: literal
+        operations:
+          - Write
+        host: "*"
+      - resource:
+          type: topic
+          name: chat-response
+          patternType: literal
+        operations:
+          - Read
+        host: "*"
+  template:
+    secret:
+      metadata:
+        annotations:
+          reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
+          reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: "non-prod"

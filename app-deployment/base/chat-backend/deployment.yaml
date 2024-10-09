@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: chat-backend
-  namespace: app
+  namespace: $NAMESPACE
   labels:
     app: chat-backend
 spec:
@@ -22,7 +22,7 @@ spec:
     spec:
       serviceAccountName: chat-backend
       containers:
-      - image: surawatprem/chat-backend:v2
+      - image: surawatprem/chat-backend:latest
         name: chat-backend
         resources:
           requests:

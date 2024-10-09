@@ -1,0 +1,21 @@
+resources:
+  - ../../../base/chat-fe
+
+namespace: non-prod
+
+configMapGenerator:
+  - name: chat-fe
+    envs:
+      - .env
+
+images:
+  - newTag: 20240925-192
+
+patches:
+  - target:
+      kind: VaultSecret
+      name: chat-fe
+    patch: |-
+      - op: replace
+        path: /spec/path
+        value: kv/non-prod/chat-fe
