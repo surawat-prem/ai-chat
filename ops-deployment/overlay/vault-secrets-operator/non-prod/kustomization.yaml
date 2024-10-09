@@ -3,7 +3,7 @@ helmGlobals:
 
 helmCharts:
   - releaseName: vault-secrets-operator-non-prod
-    namespace: app
+    namespace: non-prod
     name: vault-secrets-operator
     includeCRDs: true
     valuesFile: ./vault-secrets-operator.yaml
