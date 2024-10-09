@@ -29,6 +29,13 @@ patches:
       name: chat-backend-kafka-user
     patch: |-
       - op: replace
+        path: /spec/authorization/0/acls/resource/name
+        value: non-prod-
+  - target:
+      kind: KafkaUser
+      name: chat-backend-kafka-user
+    patch: |-
+      - op: replace
         path: /spec/template/secret/metadata/annotations/reflector.v1.k8s.emberstack.com~1reflection-allowed-namespaces
         value: non-prod
   # - target:

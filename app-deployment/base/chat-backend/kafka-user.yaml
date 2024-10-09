@@ -13,16 +13,10 @@ spec:
     acls:
       - resource:
           type: topic
-          name: chat-request
-          patternType: literal
+          name: namespace
+          patternType: prefix
         operations:
           - Read
-        host: "*"
-      - resource:
-          type: topic
-          name: chat-response
-          patternType: literal
-        operations:
           - Write
         host: "*"
   template:
