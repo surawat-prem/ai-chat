@@ -16,14 +16,14 @@ spec:
           name: chat-request
           patternType: literal
         operations:
-          - Write
+          - All
         host: "*"
       - resource:
           type: topic
           name: chat-response
           patternType: literal
         operations:
-          - Read
+          - All
         host: "*"
   template:
     secret:
