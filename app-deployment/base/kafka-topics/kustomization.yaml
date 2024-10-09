@@ -1,0 +1,3 @@
+resources:
+  - chat-request-topic.yaml
+  - chat-response-topic.yaml

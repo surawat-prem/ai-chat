@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kafka-topics
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  annotations:
+    notifications.argoproj.io/subscribe.on-sync-succeeded.slack: argocd-aichat-slack-bot
+spec:
+  destination:
+    namespace: argocd
+    server: https://kubernetes.default.svc
+  project: apps
+  source:
+    path: argocd-config/apps-deployment/overlay/non-prod/kafka-topics/kustomization.yaml
+    repoURL: https://github.com/surawat-prem/ai-chat
+    targetRevision: non-prod
