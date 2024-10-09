@@ -1,5 +1,4 @@
-resources:
-  - cnpg-pv.yaml
+resources: []
 
 helmGlobals:
   chartHome: ../../base/cnpg/charts
