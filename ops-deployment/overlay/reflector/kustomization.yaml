@@ -1,0 +1,12 @@
+resources: []
+
+helmGlobals:
+  chartHome: ../../base/reflector/charts
+
+helmCharts:
+  - releaseName: reflector
+    namespace: kube-system
+    name: reflector
+    includeCRDs: true
+    valuesFile: ./values.yaml
+    repo: ""
