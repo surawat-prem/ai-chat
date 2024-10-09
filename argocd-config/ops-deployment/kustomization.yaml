@@ -3,3 +3,4 @@ resources:
   - vault.yaml
   - vault-secrets-operator.yaml
   - kafka.yaml
+  - cnpg.yaml

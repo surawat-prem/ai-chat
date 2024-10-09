@@ -2,8 +2,6 @@ resources:
   - kafka.yaml
   - kafka-pv.yaml
   - redpanda-kafka-user.yaml
-  # - kafka-topics.yaml
-  # - kafka-users.yaml
 
 helmGlobals:
   chartHome: ../../base/kafka/charts
