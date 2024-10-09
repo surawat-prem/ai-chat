@@ -29,7 +29,7 @@ patches:
       name: chat-backend-kafka-user
     patch: |-
       - op: replace
-        path: /spec/authorization/0/acls/resource/name
+        path: /spec/authorization/acls/0/resource/name
         value: non-prod-
   - target:
       kind: KafkaUser
