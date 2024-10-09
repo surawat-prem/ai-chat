@@ -9,7 +9,7 @@ metadata:
     notifications.argoproj.io/subscribe.on-sync-succeeded.slack: argocd-aichat-slack-bot
 spec:
   destination:
-    namespace: argocd
+    namespace: non-prod
     server: https://kubernetes.default.svc
   project: apps
   source:

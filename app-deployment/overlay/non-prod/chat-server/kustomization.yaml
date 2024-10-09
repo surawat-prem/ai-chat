@@ -31,13 +31,6 @@ patches:
       name: chat-server-kafka-user
     patch: |-
       - op: replace
-        path: /metadata/namespace
-        value: kafka
-  - target:
-      kind: KafkaUser
-      name: chat-server-kafka-user
-    patch: |-
-      - op: replace
         path: /spec/template/secret/metadata/annotations/reflector.v1.k8s.emberstack.com~1reflection-allowed-namespaces
         value: non-prod
   # - target:

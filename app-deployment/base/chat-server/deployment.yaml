@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: chat-server
-  namespace: $NAMESPACE
   labels:
     app: chat-server
 spec:
