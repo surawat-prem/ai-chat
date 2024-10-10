@@ -1,0 +1,17 @@
+resources: []
+
+helmGlobals:
+  chartHome: ../../base/alloy/charts
+
+configMapGenerator:
+  - name: alloy
+    files:
+      - config.alloy
+
+helmCharts:
+  - releaseName: alloy
+    namespace: grafana
+    name: alloy
+    includeCRDs: true
+    valuesFile: ./values.yaml
+    repo: ""

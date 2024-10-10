@@ -1,4 +1,5 @@
 resources:
+  - alloy.yaml
   - ns.yaml
   - vault.yaml
   - vault-secrets-operator.yaml
