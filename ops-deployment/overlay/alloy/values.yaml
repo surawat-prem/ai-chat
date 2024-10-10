@@ -33,9 +33,9 @@ alloy:
     content: ''
 
     # -- Name of existing ConfigMap to use. Used when create is false.
-    name: null
+    name: alloy
     # -- Key in ConfigMap to get config from.
-    key: null
+    key: config.alloy
 
   clustering:
     # -- Deploy Alloy in a cluster to allow for load distribution.
