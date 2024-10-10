@@ -1,6 +1,7 @@
 resources:
-  - non-prod
   - argocd
   - default
   - database
+  - grafana
+  - non-prod
   - vault
