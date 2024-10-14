@@ -1,5 +1,8 @@
 asyncpg==0.29.0
-kafka_python_ng==2.2.2
-websockets==13.0.1
-opentelemetry-distro==0.48b0
+confluent_kafka==2.6.0
+opentelemetry-api==1.27.0
+opentelemetry-sdk==1.27.0
 opentelemetry-exporter-otlp==1.27.0
+opentelemetry-instrumentation-asyncpg==0.48.b
+websockets==13.0.1
+aiokafka==0.11.0
