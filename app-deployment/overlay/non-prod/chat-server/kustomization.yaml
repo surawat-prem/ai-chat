@@ -7,7 +7,7 @@ resources:
 #       - .env
 
 # images:
-#   - newTag: 20240925-192
+#   - newTag: 20241014-570
 
 patches:
   # - target:
