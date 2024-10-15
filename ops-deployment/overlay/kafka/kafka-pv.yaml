@@ -9,6 +9,6 @@ spec:
     - ReadWriteOnce
   capacity:
     storage: 30Gi
-  hostPath:
-    path: /data/kafka-pv
   storageClassName: gp2
+  volumeMode: Filesystem
+  persistentVolumeReclaimPolicy: Delete
