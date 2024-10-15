@@ -70,7 +70,7 @@ spec:
       - id: 0
         type: persistent-claim
         size: 10Gi
-        class: standard
+        class: gp2
         selector:
           purpose: kafka-jbod
         deleteClaim: true
