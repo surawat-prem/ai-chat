@@ -106,17 +106,20 @@ env:
 
 ports:
   web:
-    expose: false
+    expose:
+      default: false
   websecure:
     port: 8443
-    expose: true
+    expose:
+      default: true
     exposedPort: 443
     protocol: TCP
     tls:
       enabled: false
   traefik:
     port: 9000
-    expose: true
+    expose:
+      default: true
     exposedPort: 9000
     protocol: TCP
     tls:
