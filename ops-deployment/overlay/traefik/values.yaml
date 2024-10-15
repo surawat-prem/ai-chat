@@ -17,7 +17,7 @@ experimental:
 
 ingressRoute:
   dashboard:
-    enabled: false
+    enabled: true
     matchRule: PathPrefix(`/dashboard`) || PathPrefix(`/api`)
     services:
       - name: api@internal
