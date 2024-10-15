@@ -102,7 +102,7 @@ env:
 - name: POD_NAMESPACE
   valueFrom:
     fieldRef:
-      fieldPath: metadata.namespa
+      fieldPath: metadata.namespace
 
 ports:
   web:
