@@ -1,6 +1,6 @@
 deployment:
-  enabled: false
-  kind: Daemonset
+  enabled: true
+  kind: DaemonSet
 
 nodeSelector:
   node-role.kubernetes.io/node: ""
