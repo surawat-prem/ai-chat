@@ -21,12 +21,12 @@ cluster:
 
   storage:
     size: 8Gi
-    storageClass: "standard"
+    storageClass: "gp2"
 
   walStorage:
     enabled: true
     size: 1Gi
-    storageClass: "standard"
+    storageClass: "gp2"
 
   # -- The UID of the postgres user inside the image, defaults to 26
   postgresUID: 26

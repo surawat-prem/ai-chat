@@ -30,11 +30,11 @@ server:
   dataStorage:
     enabled: true
     size: 5Gi
-    storageClass: standard
+    storageClass: gp2
   auditStorage:
     enabled: true
     size: 5Gi
-    storageClass: standard
+    storageClass: gp2
   standalone:
     enabled: false
   ha:

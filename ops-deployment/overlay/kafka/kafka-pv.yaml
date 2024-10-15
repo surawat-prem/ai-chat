@@ -11,4 +11,4 @@ spec:
     storage: 30Gi
   hostPath:
     path: /data/kafka-pv
-  storageClassName: standard
+  storageClassName: gp2
