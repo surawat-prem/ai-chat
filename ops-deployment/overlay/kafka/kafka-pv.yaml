@@ -14,3 +14,4 @@ spec:
   persistentVolumeReclaimPolicy: Delete
   awsElasticBlockStore:
     fsType: ext4
+    volumeId: xxx

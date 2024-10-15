@@ -71,8 +71,8 @@ spec:
         type: persistent-claim
         size: 10Gi
         class: gp2
-        selector:
-          purpose: kafka-jbod
+        # selector:
+        #   purpose: kafka-jbod
         deleteClaim: true
   resources:
     requests:

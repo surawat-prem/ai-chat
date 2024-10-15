@@ -1,6 +1,6 @@
 resources:
   - kafka.yaml
-  - kafka-pv.yaml
+  # - kafka-pv.yaml
   - redpanda-kafka-user.yaml
 
 helmGlobals:
