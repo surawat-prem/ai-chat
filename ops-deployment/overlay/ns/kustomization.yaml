@@ -3,5 +3,6 @@ resources:
   - default
   - database
   - grafana
+  - kafka
   - non-prod
   - vault
