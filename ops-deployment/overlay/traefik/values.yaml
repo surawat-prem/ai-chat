@@ -1,0 +1,130 @@
+deployment:
+  enabled: true
+  kind: Daemonset
+
+nodeSelector:
+  node-role.kubernetes.io/node: ""
+
+ingressClass:
+  enabled: true
+  isDefaultClass: true
+  name: "traefik-default-ingress-class"
+
+experimental:
+  plugins: {}
+  kubernetesGateway:
+    enabled: false
+
+ingressRoute:
+  dashboard:
+    enabled: false
+    matchRule: PathPrefix(`/dashboard`) || PathPrefix(`/api`)
+    services:
+      - name: api@internal
+        kind: TraefikService
+    entryPoints: ["traefik"]
+    middlewares: []
+
+healthcheck:
+  enabled: false
+
+providers:
+  kubernetesCRD:
+    enabled: true
+    # -- Allows IngressRoute to reference resources in namespace other than theirs
+    allowCrossNamespace: false
+  
+  kubernetesIngress:
+    enabled: true
+
+  kubernetesGateway:
+    # -- Enable Traefik Gateway provider for Gateway API
+    enabled: false
+
+  file:
+    enabled: false
+
+logs:
+  general:
+    level: "INFO"
+  access:
+    enabled: false
+    # -- Set [filtering](https://docs.traefik.io/observability/access-logs/#filtering)
+    filters: {}
+
+metrics:
+  addInternals: false
+  prometheus:
+    # -- Entry point used to expose metrics.
+    entryPoint: metrics
+    service:
+      # -- Create a dedicated metrics service to use with ServiceMonitor
+      enabled: false
+    serviceMonitor:
+      # -- Enable optional CR for Prometheus Operator. See EXAMPLES.md for more details.
+      enabled: false
+    prometheusRule:
+      # -- Enable optional CR for Prometheus Operator. See EXAMPLES.md for more details.
+      enabled: false
+  otlp:
+    # -- Set to true in order to enable the OpenTelemetry metrics
+    enabled: false
+    http:
+      enabled: false
+      endpoint: ""
+    grpc:
+      enabled: false
+      endpoint: ""
+
+tracing:  # @schema additionalProperties: false
+  addInternals: false
+  otlp:
+    http:
+      enabled: false
+      endpoint: ""
+    grpc:
+      enabled: false
+      endpoint: ""
+
+globalArguments:
+- "--global.checknewversion"
+- "--global.sendanonymoususage"
+- "--api.insecure=false"
+additionalArguments: []
+#  - "--providers.kubernetesingress.ingressclass=traefik-internal"
+#  - "--log.level=DEBUG"
+
+env:
+- name: POD_NAME
+  valueFrom:
+    fieldRef:
+      fieldPath: metadata.name
+- name: POD_NAMESPACE
+  valueFrom:
+    fieldRef:
+      fieldPath: metadata.namespa
+
+ports:
+  web:
+    expose: false
+  websecure:
+    port: 8443
+    expose: true
+    exposedPort: 443
+    protocol: TCP
+    tls:
+      enabled: false
+  traefik:
+    port: 9000
+    expose: true
+    exposedPort: 9000
+    protocol: TCP
+    tls:
+      enabled: false
+
+service:
+  enabled: true
+  single: true
+  type: LoadBalancer
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: nlb

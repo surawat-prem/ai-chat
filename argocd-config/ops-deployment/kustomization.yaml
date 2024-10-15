@@ -6,3 +6,4 @@ resources:
   - kafka.yaml
   - cnpg.yaml
   - reflector.yaml
+  - traefik.yaml

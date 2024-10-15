@@ -1,0 +1,12 @@
+resources: []
+
+helmGlobals:
+  chartHome: ../../base/traefik/charts
+
+helmCharts:
+  - releaseName: traefik
+    namespace: default
+    name: traefik
+    includeCRDs: true
+    valuesFile: ./values.yaml
+    repo: ""

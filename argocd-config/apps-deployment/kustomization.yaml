@@ -1,4 +1,5 @@
 resources:
   - chat-backend.yaml
+  - chat-fe.yaml
   - chat-server.yaml
   - kafka-topics.yaml
