@@ -1,22 +1,22 @@
-resources:
-  - kafka.yaml
-  - kafka-pv.yaml
-  - redpanda-kafka-user.yaml
+resources: []
+#   - kafka.yaml
+#   - kafka-pv.yaml
+#   - redpanda-kafka-user.yaml
 
-helmGlobals:
-  chartHome: ../../base/kafka/charts
+# helmGlobals:
+#   chartHome: ../../base/kafka/charts
 
-helmCharts:
-  - releaseName: strimzi-kafka-operator
-    namespace: kafka
-    name: strimzi-kafka-operator
-    includeCRDs: true
-    valuesFile: ./strimzi-kafka-operator-values.yaml
-    repo: ""
+# helmCharts:
+#   - releaseName: strimzi-kafka-operator
+#     namespace: kafka
+#     name: strimzi-kafka-operator
+#     includeCRDs: true
+#     valuesFile: ./strimzi-kafka-operator-values.yaml
+#     repo: ""
 
-  - releaseName: redpanda-console
-    namespace: kafka
-    name: redpanda-console
-    includeCRDs: true
-    valuesFile: ./redpanda-console-values.yaml
-    repo: ""
+#   - releaseName: redpanda-console
+#     namespace: kafka
+#     name: redpanda-console
+#     includeCRDs: true
+#     valuesFile: ./redpanda-console-values.yaml
+#     repo: ""
