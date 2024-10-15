@@ -48,6 +48,8 @@ spec:
   destinations:
   - namespace: argocd
     server: https://kubernetes.default.svc
+  - namespace: default
+    server: https://kubernetes.default.svc
   - namespace: kafka
     server: https://kubernetes.default.svc
   - namespace: vault
