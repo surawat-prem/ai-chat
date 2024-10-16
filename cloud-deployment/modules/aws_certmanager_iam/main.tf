@@ -45,9 +45,9 @@ resource "aws_iam_group_policy" "certmanager" {
 resource "aws_iam_policy_attachment" "certmanager-user-policy-attachment" {
   name       = "certmanager-user-policy-attachment"
   policy_arn = aws_iam_policy.certmanager-policy.arn
-  users      = [aws_iam_user.certmanager-user.name]
+  users      = [aws_iam_user.certmanager.name]
 }
 
 resource "aws_iam_access_key" "certmanager-user" {
-  user = aws_iam_user.certmanager-user.name
+  user = aws_iam_user.certmanager.name
 }
