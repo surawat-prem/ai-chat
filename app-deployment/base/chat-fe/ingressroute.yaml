@@ -13,6 +13,4 @@ spec:
     - name: chat-fe
       port: 80
   tls:
-    secretName: letsencrypt-stage
-    domains:
-    - main: chat.surawattest.com
+    secretName: chat-surawattest-online
