@@ -42,7 +42,7 @@ spec:
                 name: chat-server-kafka-user
                 key: password
         ports:
-        - containerPort: 80
+        - containerPort: 8080
           name: chat-server
         volumeMounts: []
       volumes: []
