@@ -33,6 +33,8 @@ spec:
         envFrom:
         - configMapRef:
             name: chat-server
+        - secretRef:
+            name: chat-backend
         env: []
         ports:
         - containerPort: 80

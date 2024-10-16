@@ -33,12 +33,8 @@ spec:
         envFrom:
         - configMapRef:
             name: chat-backend
-        env:
-          - name: OPENAI_API_KEY
-            valueFrom:
-              secretKeyRef:
-                name: chat-backend
-                key: OPENAI_API_KEY
+        - secretRef:
+            name: chat-backend
         ports:
         - containerPort: 80
           name: chat-backend
