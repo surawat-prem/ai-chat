@@ -35,6 +35,8 @@ spec:
             name: chat-backend
         - secretRef:
             name: chat-backend
+        - secretRef:
+            name: chat-backend-kafka-user
         ports:
         - containerPort: 80
           name: chat-backend

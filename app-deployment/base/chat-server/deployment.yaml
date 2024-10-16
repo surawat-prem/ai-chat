@@ -34,7 +34,9 @@ spec:
         - configMapRef:
             name: chat-server
         - secretRef:
-            name: chat-backend
+            name: chat-server
+        - secretRef:
+            name: chat-server-kafka-user
         env: []
         ports:
         - containerPort: 80
