@@ -21,12 +21,12 @@ cluster:
 
   storage:
     size: 8Gi
-    storageClass: "gp2"
+    storageClass: "kops-csi-1-21"
 
   walStorage:
     enabled: true
     size: 1Gi
-    storageClass: "gp2"
+    storageClass: "kops-csi-1-21"
 
   # -- The UID of the postgres user inside the image, defaults to 26
   postgresUID: 26
@@ -66,9 +66,8 @@ cluster:
   # -- Affinity/Anti-affinity rules for Pods.
   # See: https://cloudnative-pg.io/documentation/current/cloudnative-pg.v1/#postgresql-cnpg-io-v1-AffinityConfiguration
   affinity:
-    # topologyKey: topology.kubernetes.io/zone
-    nodeSelector:
-      topology.kubernetes.io/zone: ap-southeast-1a
+    enablePodAntiAffinity: true
+    topologyKey: failure-domain.beta.kubernetes.io/zone
   
 
   # -- The configuration for the CA and related certificates.
