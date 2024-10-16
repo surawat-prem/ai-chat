@@ -11,4 +11,4 @@ spec:
     kind: Rule
     services:
     - name: chat-server
-      port: 80
+      port: 8080
