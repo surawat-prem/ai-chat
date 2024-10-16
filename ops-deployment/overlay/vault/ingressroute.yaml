@@ -7,7 +7,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-  - match: Host(`api-aichat-k8s-surawattes-71qf3c-845b489f340fca43.elb.ap-southeast-1.amazonaws.com`) && PathPrefix(`/vault`)
+  - match: Host(`k8s-default-traefik-9f05a1451e-075f55d8df8dec9d.elb.ap-southeast-1.amazonaws.com`) && PathPrefix(`/vault`)
     kind: Rule
     services:
     - name: vault-ui
