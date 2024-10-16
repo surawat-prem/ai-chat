@@ -19,6 +19,15 @@ spec:
           - Read
           - Write
         host: "*"
+      - resource:
+          type: group
+          name: namespace
+          patternType: prefix
+        operations:
+          - Read
+          - Write
+          - Describe
+        host: "*"
   template:
     secret:
       metadata:
