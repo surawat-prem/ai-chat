@@ -35,8 +35,6 @@ spec:
             name: chat-backend
         - secretRef:
             name: chat-backend
-        - secretRef:
-            name: chat-backend-kafka-user
         env:
           - name: KAFKA_PASSWORD
             valueFrom:
