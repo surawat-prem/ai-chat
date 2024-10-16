@@ -17,7 +17,7 @@ patches:
     patch: |-
       - op: replace
         path: /spec/path
-        value: kv/non-prod/chat-server
+        value: kvv2/non-prod/chat-server
   - target:
       kind: KafkaUser
       name: chat-server-kafka-user
