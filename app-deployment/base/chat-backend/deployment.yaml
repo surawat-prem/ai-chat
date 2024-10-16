@@ -21,7 +21,7 @@ spec:
     spec:
       serviceAccountName: chat-backend
       containers:
-      - image: surawatprem/chat-backend:latest
+      - image: surawatprem/chat-backend:v1
         name: chat-backend
         resources:
           requests:
