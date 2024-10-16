@@ -67,7 +67,7 @@ jobs:
       - name: Build Docker images
         run: |
           cd ./microservices/${{ matrix.service }}
-          docker build --platform=linux/arm64,linux/amd64 -t surawatprem/${{ matrix.service }}:${{ needs.create-common-tag.outputs.dockerTag }} -f ./docker/Dockerfile .
+          docker build --platform=linux/arm64 -t surawatprem/${{ matrix.service }}:${{ needs.create-common-tag.outputs.dockerTag }} -f ./docker/Dockerfile .
           docker push surawatprem/${{ matrix.service }}:${{ needs.create-common-tag.outputs.dockerTag }}
 
   commit-and-push:
