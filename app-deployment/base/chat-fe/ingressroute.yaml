@@ -12,3 +12,7 @@ spec:
     services:
     - name: chat-fe
       port: 80
+  tls:
+  - hosts:
+    - chat.surawattest.com
+    secretName: letsencrypt-stage
