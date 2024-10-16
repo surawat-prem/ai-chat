@@ -1,0 +1,3 @@
+resources:
+  - certificate.yaml
+  - mirror-certificate.yaml

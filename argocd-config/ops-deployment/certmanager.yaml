@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: certmanager
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: database
+    server: https://kubernetes.default.svc
+  project: ops
+  source:
+    path: ops-deployment/overlay/certmanager
+    repoURL: https://github.com/surawat-prem/ai-chat
+    targetRevision: non-prod

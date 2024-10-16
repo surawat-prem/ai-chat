@@ -1,5 +1,6 @@
 resources:
   - alloy.yaml
+  - certmanager.yaml
   - ns.yaml
   - vault.yaml
   - vault-secrets-operator.yaml

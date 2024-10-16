@@ -1,0 +1,19 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-staging
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: chat-surawattest-online-prod-acme
+    solvers:
+    - dns01:
+        route53:
+          region: ap-southeast-1
+          accessKeyIDSecretRef:
+            name: prod-route53-credentials-secret
+            key: AWS_ACCESS_KEY_ID
+          secretAccessKeySecretRef:
+            name: prod-route53-credentials-secret
+            key: AWS_SECRET_ACCESS_KEY
