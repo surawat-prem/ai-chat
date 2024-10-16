@@ -8,7 +8,7 @@ type: postgresql # or `postgis`
 mode: standalone
 
 cluster:
-  instances: 1
+  instances: 2
 
   # -- Name of the container image, supporting both tags (<image>:<tag>) and digests for deterministic and repeatable deployments:
   # <image>:<tag>@sha256:<digestValue>
@@ -66,7 +66,7 @@ cluster:
   # -- Affinity/Anti-affinity rules for Pods.
   # See: https://cloudnative-pg.io/documentation/current/cloudnative-pg.v1/#postgresql-cnpg-io-v1-AffinityConfiguration
   affinity:
-    topologyKey: topology.kubernetes.io/region
+    topologyKey: topology.kubernetes.io/zone
 
   # -- The configuration for the CA and related certificates.
   # See: https://cloudnative-pg.io/documentation/current/cloudnative-pg.v1/#postgresql-cnpg-io-v1-CertificatesConfiguration
