@@ -63,12 +63,16 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: Build Docker images
-        run: |
-          cd ./microservices/${{ matrix.service }}
-          docker build --platform linux/arm64 -t surawatprem/${{ matrix.service }}:${{ needs.create-common-tag.outputs.dockerTag }} -f ./docker/Dockerfile .
-          docker push surawatprem/${{ matrix.service }}:${{ needs.create-common-tag.outputs.dockerTag }}
+      
+      - name: Build and Push Docker images
+        uses: docker/build-push-action@v3
+        with:
+          context: ./microservices/${{ matrix.service }}
+          file: ./microservices/${{ matrix.service }}/docker/Dockerfile
+          push: true
+          tags: |
+            surawatprem/${{ matrix.service }}:${{ needs.create-common-tag.outputs.dockerTag }}
+          platforms: linux/arm64
 
   commit-and-push:
     needs: 
