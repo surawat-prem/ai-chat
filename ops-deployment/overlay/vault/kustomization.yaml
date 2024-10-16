@@ -1,5 +1,5 @@
-resources:
-  - ingressroute.yaml
+resources: []
+  # - ingressroute.yaml
 
 helmGlobals:
   chartHome: ../../base/vault/charts
