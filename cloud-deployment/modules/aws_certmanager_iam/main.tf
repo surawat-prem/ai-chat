@@ -42,12 +42,6 @@ resource "aws_iam_group_policy" "certmanager" {
   policy = data.aws_iam_policy_document.certmanager-policy.json
 }
 
-resource "aws_iam_policy_attachment" "certmanager-user-policy-attachment" {
-  name       = "certmanager-user-policy-attachment"
-  policy_arn = aws_iam_group_policy.certmanager.arn
-  users      = [aws_iam_user.certmanager.name]
-}
-
 resource "aws_iam_access_key" "certmanager-user" {
   user = aws_iam_user.certmanager.name
 }
