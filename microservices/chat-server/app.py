@@ -47,18 +47,12 @@ async def listen_to_kafka(consumer):
                 continue
             values = safe_json_decode(msg.value)
             user_id = values.get('user_id')
-            otlp_logger.info('Chat response received for user id: %s, and response message: %s', user_id, values.get('chat'))
-            otlp_logger.info('Existing connections are: %s', user_connections)
             if user_id in user_connections:
-                otlp_logger.info('Matching user idfound in user_connections, sending char response message via websocket')
-                try:
-                    target_websocket = user_connections[user_id]
-                    chat_message = values.get('chat')
-
-                    if chat_message:
-                        await target_websocket.send(json.dumps({'chat': chat_message}))
-                except Exception as e:
-                    otlp_logger.error('Error sending websocker response as error: %s', e )
+                target_websocket = user_connections[user_id]
+                chat_message = values.get('chat')
+                
+                if chat_message:
+                    await target_websocket.send(json.dumps({'chat': chat_message}))
     except Exception as e:
         otlp_logger.error('Error listening to kafka: %s', e)
 
