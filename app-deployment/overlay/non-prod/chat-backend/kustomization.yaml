@@ -8,7 +8,7 @@ configMapGenerator:
 
 images:
   - name: surawatprem/chat-backend
-    newTag: 20241016-386
+    newTag: 20241016-34
 
 patches:
   - target:
