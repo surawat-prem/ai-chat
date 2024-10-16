@@ -43,5 +43,5 @@ patches:
       name: chat-backend-kafka-user
     patch: |-
       - op: replace
-        path: /metadata/annotations/reflector.v1.k8s.emberstack.com/reflects
+        path: /metadata/annotations/reflector.v1.k8s.emberstack.com~1reflects
         value: kafka/non-prod-chat-backend-kafka-user
