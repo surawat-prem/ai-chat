@@ -11,13 +11,13 @@ images:
     newTag: 20241016-386
 
 patches:
-  # - target:
-  #     kind: VaultSecret
-  #     name: chat-backend
-  #   patch: |-
-  #     - op: replace
-  #       path: /spec/path
-  #       value: kvv2/non-prod/chat-backend
+  - target:
+      kind: VaultSecret
+      name: chat-backend
+    patch: |-
+      - op: replace
+        path: /spec/path
+        value: kvv2/non-prod/chat-backend
   - target:
       kind: KafkaUser
       name: chat-backend-kafka-user
