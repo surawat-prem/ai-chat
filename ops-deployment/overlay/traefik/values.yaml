@@ -107,7 +107,7 @@ env:
 ports:
   web:
     expose:
-      default: false
+      default: true
   websecure:
     port: 8443
     expose:
