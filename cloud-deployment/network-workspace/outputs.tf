@@ -33,3 +33,14 @@ output "vault_user_secret_key" {
   value = module.aws-vault-kms.vault_user_secret_key
   sensitive = true
 }
+
+# Cert Manager
+output "certmanager_user_access_key_id" {
+  value = module.aws-certmanager-user-iam.certmanager_user_access_key_id
+  sensitive = true
+}
+
+output "certmanager_user_secret_key" {
+  value = module.aws-certmanager-user-iam.certmanager_user_secret_key
+  sensitive = true
+}
