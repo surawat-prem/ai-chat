@@ -55,6 +55,10 @@ module "aws-kops-user-iam" {
   source = "../modules/aws_kops_iam"
 }
 
+module "aws-certmanager-user-iam" {
+  source = "../modules/aws_certmanager_iam"
+}
+
 module "aws-s3-kops" {
   source = "../modules/aws_s3_bucket"
   aws_bucket_name_prefix = var.kops_aws_bucket_name_prefix
