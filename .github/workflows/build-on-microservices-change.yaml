@@ -75,7 +75,7 @@ jobs:
           push: true
           tags: |
             surawatprem/${{ matrix.service }}:${{ needs.create-common-tag.outputs.dockerTag }}
-          platforms: linux/arm64,linux/amd64
+          platforms: linux/arm64
 
   commit-and-push:
     needs: 
