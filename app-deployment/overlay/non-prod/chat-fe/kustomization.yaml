@@ -9,11 +9,11 @@ configMapGenerator:
 images:
   - newTag: 20241014-570
 
-patches:
-  - target:
-      kind: VaultSecret
-      name: chat-fe
-    patch: |-
-      - op: replace
-        path: /spec/path
-        value: kv/non-prod/chat-fe
+patches: []
+  # - target:
+  #     kind: VaultSecret
+  #     name: chat-fe
+  #   patch: |-
+  #     - op: replace
+  #       path: /spec/path
+  #       value: kv/non-prod/chat-fe

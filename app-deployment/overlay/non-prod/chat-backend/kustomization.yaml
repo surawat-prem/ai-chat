@@ -1,22 +1,22 @@
 resources:
   - ../../../base/chat-backend
 
-# configMapGenerator:
-#   - name: chat-backend
-#     envs:
-#       - .env
+configMapGenerator:
+  - name: chat-backend
+    envs:
+      - .env
 
-# images:
-#   - newTag: 20241014-570
+images:
+  - newTag: 20241014-570
 
 patches:
-  # - target:
-  #     kind: VaultSecret
-  #     name: chat-backend
-  #   patch: |-
-  #     - op: replace
-  #       path: /spec/path
-  #       value: kv/non-prod/chat-backend
+  - target:
+      kind: VaultSecret
+      name: chat-backend
+    patch: |-
+      - op: replace
+        path: /spec/path
+        value: kv/non-prod/chat-backend
   - target:
       kind: KafkaUser
       name: chat-backend-kafka-user
@@ -45,10 +45,10 @@ patches:
       - op: replace
         path: /spec/template/secret/metadata/annotations/reflector.v1.k8s.emberstack.com~1reflection-allowed-namespaces
         value: non-prod
-  # - target:
-  #     kind: Secret
-  #     name: chat-backend-kafka-user
-  #   patch: |-
-  #     - op: replace
-  #       path: /metadata/annotations/reflector.v1.k8s.emberstack.com/reflects
-  #       value: kafka/non-prod-chat-backend-kafka-user
+  - target:
+      kind: Secret
+      name: chat-backend-kafka-user
+    patch: |-
+      - op: replace
+        path: /metadata/annotations/reflector.v1.k8s.emberstack.com/reflects
+        value: kafka/non-prod-chat-backend-kafka-user

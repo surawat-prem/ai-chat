@@ -1,22 +1,22 @@
 resources:
   - ../../../base/chat-server
 
-# configMapGenerator:
-#   - name: chat-server
-#     envs:
-#       - .env
+configMapGenerator:
+  - name: chat-server
+    envs:
+      - .env
 
-# images:
-#   - newTag: 20241014-570
+images:
+  - newTag: 20241014-570
 
 patches:
-  # - target:
-  #     kind: VaultSecret
-  #     name: chat-server
-  #   patch: |-
-  #     - op: replace
-  #       path: /spec/path
-  #       value: kv/non-prod/chat-server
+  - target:
+      kind: VaultSecret
+      name: chat-server
+    patch: |-
+      - op: replace
+        path: /spec/path
+        value: kv/non-prod/chat-server
   - target:
       kind: KafkaUser
       name: chat-server-kafka-user

@@ -1,5 +1,6 @@
 resources:
   - deployment.yaml
+  - ingressroute.yaml
   - service.yaml
   - service-account.yaml
-  - vaultsecret.yaml
+  # - vaultsecret.yaml
