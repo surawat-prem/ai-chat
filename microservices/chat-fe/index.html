@@ -68,7 +68,7 @@
         let websocket;
 
         function connect() {
-            websocket = new WebSocket('ws://localhost:8765');
+            websocket = new WebSocket('{{CHAT_SERVER_SOCKET_URL}}');
 
             websocket.onopen = () => {
                 console.log('WebSocket connection opened');
