@@ -35,9 +35,12 @@ spec:
             name: chat-server
         - secretRef:
             name: chat-server
-        - secretRef:
-            name: chat-server-kafka-user
-        env: []
+        env:
+          - name: KAFKA_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: chat-server-kafka-user
+                key: password
         ports:
         - containerPort: 80
           name: chat-server
