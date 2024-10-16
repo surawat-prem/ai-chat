@@ -7,7 +7,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-  - match: Host(`chat.surawattest.online`) && PathPrefix(`/vault`)
+  - match: Host(`vault.surawattest.online`) && PathPrefix(`/`)
     kind: Rule
     services:
     - name: vault-ui
