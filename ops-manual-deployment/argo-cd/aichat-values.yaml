@@ -7,10 +7,7 @@ global:
   topologySpreadConstraints: []
 
   cm:
-    create: true
-    application.instanceLabelKey: argocd.argoproj.io/instance
-    admin.enabled: true
-    statusbadge.enabled: true
+    create: false
 
   tls:
     annotations: {}
