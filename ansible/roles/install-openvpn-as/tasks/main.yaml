@@ -1,0 +1,31 @@
+---
+- name: Create directory for APT keyrings
+  ansible.builtin.file:
+    path: /etc/apt/keyrings
+    state: directory
+
+- name: Download OpenVPN GPG key
+  ansible.builtin.get_url:
+    url: https://as-repository.openvpn.net/as-repo-public.asc
+    dest: /etc/apt/keyrings/as-repository.asc
+    mode: '0644'
+
+- name: Add OpenVPN Access Server repository
+  ansible.builtin.lineinfile:
+    path: /etc/apt/sources.list.d/openvpn-as-repo.list
+    line: "deb [arch=amd64 signed-by=/etc/apt/keyrings/as-repository.asc] http://as-repository.openvpn.net/as/debian noble main"
+    create: yes
+
+- name: Install OpenVPN Access Server
+  ansible.builtin.apt:
+    name: openvpn-as
+    state: present
+  register: openvpn_install
+
+- name: Print openvpn install output
+  ansible.builtin.debug:
+    msg: "{{ openvpn_install.stdout }}"
+
+- name: Print openvpn install error
+  ansible.builtin.debug:
+    msg: "{{ openvpn_install.stderr }}"
