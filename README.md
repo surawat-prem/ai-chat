@@ -11,7 +11,15 @@
     - (kubernetes deployment manifests for application microservices)
 - microservices 
     - (microservices fe + be)
+- ops-manual-deployment
+    - (manual argocd helm deployment + secrets setup for ops)
+---
+### Infrastructure Diagrams
+#### Cloud Infrastructure
+![Alt text](images/cloud-infrastructure.png)
 
+#### Kubernetes Cluster
+![Alt text](images/kubernetes-cluster.png)
 ---
 
 ### CLOUD-DEPLOYMENT
@@ -66,16 +74,26 @@ pre-requirements:
     
 #### steps
 -   Run playbook to setup necessary packages
-```bash
-    #!bin/bash
-    ansible-playbook setup.yaml \
-    ansible-playbook create-cluster.yaml
-```
--   When done SSH into controller machine and run command below to obtain you kubeconfig then store for use later
-```bash
-    #!bin/bash
-    kops export kubeconfig {{ your_cluster_name}} --admin
-```
+    ```bash
+        #!bin/bash
+        ansible-playbook setup.yaml \
+        ansible-playbook create-cluster.yaml
+    ```
+-   When done SSH into controller machine and run command 'kops edit cluster {{ your clusterName }} and add following into spec section / save exit
+    ```
+    awsLoadBalancerController:
+        enabled: true
+    certManager:
+        enabled: true
+
+    # Then run command
+    kops update cluster {{ your clusterName }} --yes
+    ```
+-   to obtain you kubeconfig then store for use later
+    ```bash
+        #!bin/bash
+        kops export kubeconfig {{ your_cluster_name}} --admin
+    ```
 -   Test connection to kubernetes cluster by using openvpn connection and kubeconffig obtained
 
 ### GITHUB - DOCKERHUB
@@ -88,6 +106,81 @@ pre-requirements:
         -   DOCKER_PASSWORD
     -   Enable github action repo read and write
 
-### OPS-DEPLOYMENT
+### GRAFANA CLOUD
+#### pre-requirements:
+-   Create free account on grafana cloud
+    -   Foolow steps to generate grafanacloud secrets (https://grafana.com/docs/grafana-cloud/monitor-applications/application-observability/collector/grafana-alloy/)
+        -   GRAFANA_CLOUD_USERNAME and GRAFANA_CLOUD_API_TOKEN
+
+### OPS-MANUAL-DEPLOYMENT
 #### pre-requirement:
--   Manual installation
+-   Prepare required secrets
+    -   ArgoCD
+        -   create slack token and input into argo-cd/secret.template file then rename to .secrets
+        -   edit cluster-app.yaml to your repository configurations
+        -   no credentials needed for ArgoCD repo since using 'public' repo
+    -   Vault
+        -   Get secret from terraform cloud state 'network' workspace for vault_kms IAM
+        -   Input secret in vault/secrets-template.yaml file then rename to .secrets
+    -   Alloy
+        -   Use grafanacloud credentials obtained befor then input into /ops-manual-deployment/alloy/alloy-secret.yaml then rename to .secrets
+    -   CertManager
+        -   Get secret from terraform cloud state 'network' workspace for certmanager IAM
+        -   Input secret in vault/certmanager-secret.yaml file then rename to .secrets
+-   Init manual steps
+    ```bash
+        #!bin/bash
+        bash manual-install.sh
+    ```
+#### requirements
+-   Sync argocd applications
+    -   ArgoCD
+        -   Access argocd-server service through port-forward and access with 'secret' argocd-initial-admin-secret
+        -   'Sync' applications
+            -   start with 'ns' and 'vault'
+            -   run then keep the output safe (ie. Root Token)
+                ```bash
+                    #!bin/bash
+                    bash vault/init-vault.sh
+                ```
+            -   'Sync' applications 'vault-secrets-operator'
+            -   export VAULT_ROOT_TOKEN for use in vault scripts then run vault-kubernetes-auth-app.sh
+                ```bash
+                    #!bin/bash
+                    export VAULT_ROOT_TOKEN={{ vault token from previus step}}
+                    bash vault/vault-kubernetes-auth-app.sh
+                ```    
+            -   install required crds for grafana prometheus monitoring
+                ```bash
+                    #!bin/bash
+                    kubectl apply -f monitoring/crds --server-side
+                ```    
+            -   'Sync' applications 'cnpg' with server-side apply
+            -   Access 'cnpg-cluster-rw' service through port-forward and access with 'secret' cnpg-cluster-superuser
+            -   exucute queies in database/(init-scema.sql && prepare-users.sql) ***ndemonstration purpose only***
+            -   'Sync' appplications 'reflector' 'kafka'
+                -   After 'kafka' is ready, force sync 'redpanda-console' to update kafkaUser secret
+            -   'Sync' applications 'traefik'
+                -   After 'traefik' is ready update externalIP (ie. aws nlb dns) as you public dns cname record
+                    -   In my case add record 'chat.surawattest.online' with CNAME of loadbalancer
+            -   create alloy secret by executing
+                ```bash
+                    #!bin/bash
+                    kubectl apply -f alloy/.secrets
+                ```
+                -   'Sync' application 'alloy'
+            -   'Sync' application 'certmanager'
+                -   After certificate has Ready Status check secret 'chat-surawat-online' in ns 'non-prod' if it is reflected(i.e. has data),
+                    -   If not 'Force Sync Replace' the secret to re-reflect
+            -   'Sync' application 'kafka-topics to create required topics for use by microservices
+-   Prepare necessary 'vault-secrets'
+    -   Access 'vault-ui' service through port-forward and access with root vault token obtained before
+    -   In this example create secret named below, as per secret env in 'microservices/{{ service-name }}/.env.example
+        -   chat-backend
+        -   chat-server
+    -   Sync applications 'chat-fe', 'chat-server', 'chat-backend'
+        -   Check if secrets 'kafka-user' in ns 'non-prod-{{ service-name }}' has values
+            -   If not 'Force Sync Replace' the secret to re-reflect
+
+---
+Access the chat-fe via https://chat.surawattest.online/chat
