@@ -1,16 +1,39 @@
 ---
-- name: Update dependencies
-  ansible.builtin.apt:
-    update_cache: true
-    upgrade: true
-
 - name: Install common Dependencies
   ansible.builtin.apt:
     name: "{{ item }}"
     state: present
+    update_cache: true
   with_items:
     - curl
     - gnupg
     - net-tools
     - apt-transport-https
     - ca-certificates
+    - wget
+
+- name: Add Kubernetes API repository
+  ansible.builtin.apt_repository:
+    repo: deb https://apt.kubernetes.io/ kubernetes-xenial main
+    state: present
+
+- name: Add Google's public signing key
+  ansible.builtin.command: curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+  args:
+    warn: false
+  register: add_gpg_key
+  changed_when: add_gpg_key.rc == 0
+
+- name: Install kubectl
+  ansible.builtin.apt:
+    name: kubectl
+    state: present
+
+- name: Verify kubectl installation
+  ansible.builtin.command: kubectl version --client
+  register: kubectl_version
+  changed_when: false
+
+- name: Output kubectl version
+  ansible.builtin.debug:
+    var: kubectl_version.stdout
