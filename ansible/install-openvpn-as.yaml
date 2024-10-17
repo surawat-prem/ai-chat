@@ -1,0 +1,8 @@
+- name: Create openvpn access server
+  hosts: controllers
+  become: true
+  vars_files:
+    - ./group_vars/all/vars.yaml
+    - ./.secrets/kops-secrets.yaml
+  roles:
+    - install-openvpn-as
