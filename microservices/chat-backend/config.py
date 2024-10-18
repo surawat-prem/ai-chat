@@ -6,7 +6,7 @@ otlp_endpoint = os.environ.get('OTEL_ENDPOINT', 'localhost:4317')
 
 # AI config
 apikey = os.environ.get('OPENAI_API_KEY', '')
-ai_model = os.environ.get('OPENAI_MODEL', 'davinci-002')
+ai_model = os.environ.get('OPENAI_MODEL', 'gpt-3.5-turbo')
 
 # Kafka broker and topic configurations
 kafka_bootstrap_servers = os.environ.get('KAFKA_BOOTSTRAP_SERVERS', 'localhost:33333')
